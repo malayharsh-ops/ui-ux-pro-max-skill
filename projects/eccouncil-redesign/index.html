@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SecureCred | Cybersecurity Certifications for the AI Era</title>
+  <meta name="description" content="Concept redesign: a clearer, less overwhelming home for a cybersecurity certification body — three audience paths, curated credentials, and one confident CTA.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: '#0B1220',
+            surface: '#111A2E',
+            surface2: '#182236',
+            paper: '#F7F8FA',
+            primary: '#DC2626',
+            primaryDark: '#B91C1C',
+            accent: '#22D3C7',
+          },
+          fontFamily: {
+            heading: ['Space Grotesk', 'sans-serif'],
+            body: ['Inter', 'sans-serif'],
+          },
+          maxWidth: { '8xl': '90rem' },
+        }
+      }
+    }
+  </script>
+  <style>
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+    .grid-overlay {
+      background-image: linear-gradient(rgba(148,163,184,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(148,163,184,0.08) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+  </style>
+</head>
+<body class="bg-paper font-body text-slate-800 antialiased">
+
+  <!-- Skip link -->
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[60] focus:bg-white focus:text-ink focus:px-4 focus:py-2 focus:rounded-lg">Skip to content</a>
+
+  <!-- Nav: 3 links + 1 CTA, no mega-menu -->
+  <header class="sticky top-0 z-50 bg-ink/95 backdrop-blur border-b border-white/10">
+    <div class="max-w-8xl mx-auto px-6 flex items-center justify-between h-16">
+      <a href="index.html" class="flex items-center gap-2 font-heading font-bold text-lg text-white cursor-pointer">
+        <span class="w-8 h-8 rounded-md bg-primary flex items-center justify-center text-white text-sm">SC</span>
+        SecureCred
+      </a>
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300" aria-label="Primary">
+        <a href="index.html" class="text-white cursor-pointer">Home</a>
+        <a href="ceh-training.html" class="hover:text-white transition-colors cursor-pointer">CEH Training</a>
+        <a href="blog.html" class="hover:text-white transition-colors cursor-pointer">Cyber Exchange</a>
+        <a href="#paths" class="hover:text-white transition-colors cursor-pointer">Enterprise</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <a href="#" class="hidden sm:inline-block text-sm font-semibold text-slate-300 hover:text-white cursor-pointer">Sign in</a>
+        <a href="ceh-training.html" class="bg-primary hover:bg-primaryDark text-white text-sm font-semibold px-5 py-2.5 rounded-lg transition-colors cursor-pointer">Get Certified</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Hero -->
+    <section class="relative bg-ink grid-overlay overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-b from-ink via-ink/95 to-ink"></div>
+      <div class="relative max-w-8xl mx-auto px-6 pt-20 pb-16 md:pt-28 md:pb-24 text-center">
+        <span class="inline-flex items-center gap-2 text-xs font-semibold tracking-wide text-accent bg-accent/10 border border-accent/30 rounded-full px-3 py-1 mb-6">
+          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/></svg>
+          Built for the AI era of cyber threats
+        </span>
+        <h1 class="font-heading text-4xl md:text-6xl font-bold text-white leading-tight max-w-4xl mx-auto">
+          Get certified by the people who wrote the book on ethical hacking
+        </h1>
+        <p class="mt-6 text-lg text-slate-300 max-w-2xl mx-auto">
+          One clear path to the credential you actually need — instead of 40 programs and 15 menus to dig through first.
+        </p>
+        <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href="ceh-training.html" class="w-full sm:w-auto bg-primary hover:bg-primaryDark text-white font-semibold px-7 py-3.5 rounded-lg transition-colors cursor-pointer">
+            Find your certification
+          </a>
+          <a href="#paths" class="w-full sm:w-auto border border-white/20 text-white font-semibold px-7 py-3.5 rounded-lg hover:bg-white/5 transition-colors cursor-pointer">
+            Explore by audience
+          </a>
+        </div>
+        <p class="mt-8 text-sm text-slate-400">
+          Trusted by <span class="text-white font-semibold">400,000+</span> certified professionals · <span class="text-white font-semibold">4.7/5</span> on Trustpilot · <span class="text-white font-semibold">145</span> countries
+        </p>
+      </div>
+    </section>
+
+    <!-- Audience path selector — replaces the unlabeled dropdown form -->
+    <section id="paths" class="max-w-8xl mx-auto px-6 -mt-10 md:-mt-14 relative pb-20">
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-white rounded-2xl shadow-xl shadow-slate-900/5 border border-slate-100 p-7">
+          <div class="w-11 h-11 rounded-lg bg-primary/10 flex items-center justify-center mb-5">
+            <svg class="w-5 h-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.5-7 8-7s8 3 8 7"/></svg>
+          </div>
+          <h3 class="font-heading font-semibold text-lg text-slate-900">I'm an individual</h3>
+          <p class="mt-2 text-sm text-slate-500 leading-relaxed">Start or grow a security career with a certification employers actually screen for.</p>
+          <a href="ceh-training.html" class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:text-primaryDark cursor-pointer">
+            Browse certifications
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+        <div class="bg-white rounded-2xl shadow-xl shadow-slate-900/5 border border-slate-100 p-7">
+          <div class="w-11 h-11 rounded-lg bg-primary/10 flex items-center justify-center mb-5">
+            <svg class="w-5 h-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/></svg>
+          </div>
+          <h3 class="font-heading font-semibold text-lg text-slate-900">I'm building a team</h3>
+          <p class="mt-2 text-sm text-slate-500 leading-relaxed">Upskill an existing security function with cohort training and progress reporting.</p>
+          <a href="#enterprise" class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:text-primaryDark cursor-pointer">
+            Talk to enterprise sales
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+        <div class="bg-white rounded-2xl shadow-xl shadow-slate-900/5 border border-slate-100 p-7">
+          <div class="w-11 h-11 rounded-lg bg-primary/10 flex items-center justify-center mb-5">
+            <svg class="w-5 h-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3 4 6v6c0 4.5 3.4 8.2 8 9 4.6-.8 8-4.5 8-9V6l-8-3z"/></svg>
+          </div>
+          <h3 class="font-heading font-semibold text-lg text-slate-900">I'm government / military</h3>
+          <p class="mt-2 text-sm text-slate-500 leading-relaxed">DoD 8570/8140-aligned programs and procurement support for public sector teams.</p>
+          <a href="#enterprise" class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:text-primaryDark cursor-pointer">
+            See compliance mapping
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Curated certifications, not all 35+ at once -->
+    <section class="bg-white border-y border-slate-100 py-20">
+      <div class="max-w-8xl mx-auto px-6">
+        <div class="flex items-end justify-between flex-wrap gap-4 mb-10">
+          <div>
+            <span class="text-xs font-bold tracking-wider text-primary uppercase">Most requested</span>
+            <h2 class="font-heading text-3xl font-bold text-slate-900 mt-2">Six certifications, most of the demand</h2>
+            <p class="text-slate-500 mt-2 max-w-xl">The rest of our 40+ programs are one click away — we just don't lead with all of them at once.</p>
+          </div>
+          <a href="#" class="text-sm font-semibold text-primary hover:text-primaryDark cursor-pointer whitespace-nowrap">View all 40+ certifications →</a>
+        </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Card 1 -->
+          <a href="ceh-training.html" class="group block rounded-2xl border border-slate-200 hover:border-primary/40 hover:shadow-lg transition-all p-6 cursor-pointer">
+            <span class="text-xs font-bold text-accent bg-ink rounded px-2 py-1">MOST POPULAR</span>
+            <h3 class="font-heading font-semibold text-lg text-slate-900 mt-4">Certified Ethical Hacker (CEH)</h3>
+            <p class="text-sm text-slate-500 mt-2">Offensive security fundamentals, now with AI-assisted labs.</p>
+            <span class="inline-flex items-center gap-1.5 text-sm font-semibold text-primary mt-4 group-hover:gap-2.5 transition-all">View program
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </span>
+          </a>
+          <!-- Card 2 -->
+          <a href="#" class="group block rounded-2xl border border-slate-200 hover:border-primary/40 hover:shadow-lg transition-all p-6 cursor-pointer">
+            <span class="text-xs font-bold text-slate-500 bg-slate-100 rounded px-2 py-1">EXECUTIVE</span>
+            <h3 class="font-heading font-semibold text-lg text-slate-900 mt-4">Certified CISO (C|CISO)</h3>
+            <p class="text-sm text-slate-500 mt-2">Governance, risk, and security leadership for senior roles.</p>
+            <span class="inline-flex items-center gap-1.5 text-sm font-semibold text-primary mt-4 group-hover:gap-2.5 transition-all">View program
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </span>
+          </a>
+          <!-- Card 3 -->
+          <a href="#" class="group block rounded-2xl border border-slate-200 hover:border-primary/40 hover:shadow-lg transition-all p-6 cursor-pointer">
+            <span class="text-xs font-bold text-slate-500 bg-slate-100 rounded px-2 py-1">DEFENSIVE</span>
+            <h3 class="font-heading font-semibold text-lg text-slate-900 mt-4">Certified SOC Analyst (CSA)</h3>
+            <p class="text-sm text-slate-500 mt-2">Entry to mid-level monitoring, triage, and incident response.</p>
+            <span class="inline-flex items-center gap-1.5 text-sm font-semibold text-primary mt-4 group-hover:gap-2.5 transition-all">View program
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </span>
+          </a>
+          <!-- Card 4 -->
+          <a href="#" class="group block rounded-2xl border border-slate-200 hover:border-primary/40 hover:shadow-lg transition-all p-6 cursor-pointer">
+            <span class="text-xs font-bold text-slate-500 bg-slate-100 rounded px-2 py-1">FORENSICS</span>
+            <h3 class="font-heading font-semibold text-lg text-slate-900 mt-4">Computer Hacking Forensic Investigator</h3>
+            <p class="text-sm text-slate-500 mt-2">Evidence handling and investigation for digital incidents.</p>
+            <span class="inline-flex items-center gap-1.5 text-sm font-semibold text-primary mt-4 group-hover:gap-2.5 transition-all">View program
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </span>
+          </a>
+          <!-- Card 5 -->
+          <a href="#" class="group block rounded-2xl border border-slate-200 hover:border-primary/40 hover:shadow-lg transition-all p-6 cursor-pointer">
+            <span class="text-xs font-bold text-slate-500 bg-slate-100 rounded px-2 py-1">CLOUD</span>
+            <h3 class="font-heading font-semibold text-lg text-slate-900 mt-4">Certified Cloud Security Engineer</h3>
+            <p class="text-sm text-slate-500 mt-2">Securing multi-cloud infrastructure and workloads.</p>
+            <span class="inline-flex items-center gap-1.5 text-sm font-semibold text-primary mt-4 group-hover:gap-2.5 transition-all">View program
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </span>
+          </a>
+          <!-- Card 6 -->
+          <a href="#" class="group block rounded-2xl border border-slate-200 hover:border-primary/40 hover:shadow-lg transition-all p-6 cursor-pointer">
+            <span class="text-xs font-bold text-slate-500 bg-slate-100 rounded px-2 py-1">NETWORK</span>
+            <h3 class="font-heading font-semibold text-lg text-slate-900 mt-4">Certified Network Defender (CND)</h3>
+            <p class="text-sm text-slate-500 mt-2">Hardening, detection, and response for network defenders.</p>
+            <span class="inline-flex items-center gap-1.5 text-sm font-semibold text-primary mt-4 group-hover:gap-2.5 transition-all">View program
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trust stats, front-loaded not buried -->
+    <section class="bg-ink py-16">
+      <div class="max-w-8xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div>
+          <p class="font-heading text-3xl md:text-4xl font-bold text-white">20+</p>
+          <p class="text-sm text-slate-400 mt-1">Years defining the field</p>
+        </div>
+        <div>
+          <p class="font-heading text-3xl md:text-4xl font-bold text-white">92%</p>
+          <p class="text-sm text-slate-400 mt-1">Employers prefer CEH grads</p>
+        </div>
+        <div>
+          <p class="font-heading text-3xl md:text-4xl font-bold text-white">3,500+</p>
+          <p class="text-sm text-slate-400 mt-1">Organizations trained</p>
+        </div>
+        <div>
+          <p class="font-heading text-3xl md:text-4xl font-bold text-white">145</p>
+          <p class="text-sm text-slate-400 mt-1">Countries reached</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonial -->
+    <section class="bg-paper py-20">
+      <div class="max-w-3xl mx-auto px-6 text-center">
+        <svg class="w-8 h-8 text-primary/30 mx-auto mb-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 7h4v4c0 3-2 5-5 5v-2c1.5 0 2-1 2-2H7V7zm8 0h4v4c0 3-2 5-5 5v-2c1.5 0 2-1 2-2h-1V7z"/></svg>
+        <p class="font-heading text-xl md:text-2xl text-slate-800 leading-relaxed">
+          "I compared six programs. This was the only one where I could tell in two minutes which certification I actually needed."
+        </p>
+        <p class="mt-6 text-sm font-semibold text-slate-900">Renata Ibarra</p>
+        <p class="text-sm text-slate-500">SOC Analyst II, promoted after CEH</p>
+      </div>
+    </section>
+
+    <!-- Enterprise strip -->
+    <section id="enterprise" class="max-w-8xl mx-auto px-6 pb-20">
+      <div class="bg-surface rounded-3xl p-10 md:p-14 grid md:grid-cols-[1.3fr_1fr] gap-10 items-center">
+        <div>
+          <h2 class="font-heading text-2xl md:text-3xl font-bold text-white">Training a security team, not just one hire?</h2>
+          <p class="text-slate-400 mt-3 max-w-lg">Cohort pricing, a named program manager, and DoD 8570/8140-aligned tracks for public sector teams.</p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-3 md:justify-end">
+          <a href="#" class="bg-primary hover:bg-primaryDark text-white font-semibold px-6 py-3 rounded-lg text-center transition-colors cursor-pointer">Talk to sales</a>
+          <a href="#" class="border border-white/20 text-white font-semibold px-6 py-3 rounded-lg text-center hover:bg-white/5 transition-colors cursor-pointer">Download compliance sheet</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer: condensed, not a full mega-menu -->
+  <footer class="bg-ink border-t border-white/10 pt-16 pb-10">
+    <div class="max-w-8xl mx-auto px-6">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-10">
+        <div class="lg:col-span-2">
+          <a href="index.html" class="flex items-center gap-2 font-heading font-bold text-lg text-white cursor-pointer">
+            <span class="w-8 h-8 rounded-md bg-primary flex items-center justify-center text-white text-sm">SC</span>
+            SecureCred
+          </a>
+          <p class="text-sm text-slate-400 mt-4 max-w-xs">Concept redesign of a cybersecurity certification body's public site — homepage, flagship course page, and resource hub.</p>
+        </div>
+        <div>
+          <p class="text-sm font-semibold text-white mb-4">Certifications</p>
+          <ul class="space-y-2.5 text-sm text-slate-400">
+            <li><a href="ceh-training.html" class="hover:text-white cursor-pointer">Ethical Hacking</a></li>
+            <li><a href="#" class="hover:text-white cursor-pointer">Security Leadership</a></li>
+            <li><a href="#" class="hover:text-white cursor-pointer">Cloud Security</a></li>
+            <li><a href="#" class="hover:text-white cursor-pointer">Digital Forensics</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="text-sm font-semibold text-white mb-4">Resources</p>
+          <ul class="space-y-2.5 text-sm text-slate-400">
+            <li><a href="blog.html" class="hover:text-white cursor-pointer">Cyber Exchange blog</a></li>
+            <li><a href="#" class="hover:text-white cursor-pointer">Career path guide</a></li>
+            <li><a href="#" class="hover:text-white cursor-pointer">Exam vouchers</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="text-sm font-semibold text-white mb-4">Company</p>
+          <ul class="space-y-2.5 text-sm text-slate-400">
+            <li><a href="#" class="hover:text-white cursor-pointer">About</a></li>
+            <li><a href="#enterprise" class="hover:text-white cursor-pointer">Enterprise</a></li>
+            <li><a href="#" class="hover:text-white cursor-pointer">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-white/10 mt-12 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-xs text-slate-500">Concept redesign for portfolio/demo purposes — not affiliated with EC-Council.</p>
+        <div class="flex gap-4 text-xs text-slate-500">
+          <a href="#" class="hover:text-white cursor-pointer">Privacy</a>
+          <a href="#" class="hover:text-white cursor-pointer">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
