@@ -8,16 +8,16 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            ink: '#0B1220', surface: '#111A2E', surface2: '#182236',
-            paper: '#F7F8FA', primary: '#DC2626', primaryDark: '#B91C1C', accent: '#22D3C7',
+            ink: '#1E1E1E', surface: '#262626',
+            paper: '#F9F9F9', primary: '#ED0000', primaryDark: '#C40000',
           },
-          fontFamily: { heading: ['Space Grotesk', 'sans-serif'], body: ['Inter', 'sans-serif'] },
+          fontFamily: { heading: ['Poppins', 'sans-serif'], body: ['Work Sans', 'sans-serif'] },
           maxWidth: { '8xl': '90rem' },
         }
       }
@@ -56,14 +56,14 @@
     <!-- Header + search -->
     <section class="bg-ink py-14">
       <div class="max-w-8xl mx-auto px-6">
-        <span class="text-xs font-bold tracking-wider text-accent uppercase">Cyber Exchange</span>
+        <span class="text-xs font-bold tracking-wider text-primary uppercase">Cyber Exchange</span>
         <h1 class="font-heading text-4xl font-bold text-white mt-2">Research, career guides, and field notes</h1>
         <p class="text-slate-400 mt-3 max-w-xl">Written by practitioners, organized by the domain you're actually working in.</p>
         <form class="mt-7 max-w-lg" role="search" onsubmit="return false;">
           <label for="blog-search" class="sr-only">Search articles</label>
           <div class="relative">
             <svg class="w-5 h-5 text-slate-500 absolute left-4 top-1/2 -translate-y-1/2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
-            <input id="blog-search" type="search" placeholder="Search articles, e.g. “ransomware response”" class="w-full bg-surface border border-white/10 rounded-lg pl-11 pr-4 py-3 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-accent">
+            <input id="blog-search" type="search" placeholder="Search articles, e.g. “ransomware response”" class="w-full bg-surface border border-white/10 rounded-lg pl-11 pr-4 py-3 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-primary">
           </div>
         </form>
       </div>
@@ -85,13 +85,13 @@
     <!-- Featured article -->
     <section class="max-w-8xl mx-auto px-6 py-12">
       <a href="#" class="group grid md:grid-cols-2 gap-0 rounded-2xl overflow-hidden border border-slate-200 hover:shadow-xl transition-shadow cursor-pointer">
-        <div class="bg-gradient-to-br from-ink via-surface to-accent/20 p-10 flex items-center justify-center min-h-[240px]">
-          <svg class="w-16 h-16 text-accent/60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 2 3 6v6c0 5 3.8 9 9 10 5.2-1 9-5 9-10V6l-9-4z"/><path d="m9 12 2 2 4-4"/></svg>
+        <div class="bg-ink p-10 flex items-center justify-center min-h-[240px] relative overflow-hidden" style="background-image: radial-gradient(circle at 25% 25%, rgba(237,0,0,0.25), transparent 60%);">
+          <svg class="w-16 h-16 text-white/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 2 3 6v6c0 5 3.8 9 9 10 5.2-1 9-5 9-10V6l-9-4z"/><path d="m9 12 2 2 4-4"/></svg>
         </div>
         <div class="p-8 flex flex-col justify-center bg-white">
           <span class="text-xs font-bold text-primary uppercase w-fit">Ethical Hacking · Featured</span>
           <h2 class="font-heading text-2xl font-bold text-slate-900 mt-3 group-hover:text-primary transition-colors">
-            How AI is changing red-team reconnaissance — and what defenders should watch for
+            How AI is changing red-team reconnaissance, and what defenders should watch for
           </h2>
           <p class="text-sm text-slate-500 mt-3">A field look at LLM-assisted OSINT gathering, and three detection patterns worth building this quarter.</p>
           <p class="text-xs text-slate-400 mt-5">Feb 18, 2026 · 8 min read</p>
@@ -99,12 +99,12 @@
       </a>
     </section>
 
-    <!-- Article grid — consistent cards, real hrefs -->
+    <!-- Article grid: consistent cards, real hrefs -->
     <section class="max-w-8xl mx-auto px-6 pb-8">
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
         <a href="#" class="group rounded-xl border border-slate-200 overflow-hidden hover:shadow-lg transition-shadow cursor-pointer">
-          <div class="aspect-[16/9] bg-gradient-to-br from-surface to-primary/30 flex items-center justify-center">
+          <div class="aspect-[16/9] bg-surface flex items-center justify-center relative overflow-hidden" style="background-image: radial-gradient(circle at 25% 25%, rgba(237,0,0,0.2), transparent 60%);">
             <svg class="w-9 h-9 text-white/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M8 4v0M16 4v0"/></svg>
           </div>
           <div class="p-5">
@@ -115,7 +115,7 @@
         </a>
 
         <a href="#" class="group rounded-xl border border-slate-200 overflow-hidden hover:shadow-lg transition-shadow cursor-pointer">
-          <div class="aspect-[16/9] bg-gradient-to-br from-surface to-accent/30 flex items-center justify-center">
+          <div class="aspect-[16/9] bg-surface flex items-center justify-center relative overflow-hidden" style="background-image: radial-gradient(circle at 25% 25%, rgba(237,0,0,0.2), transparent 60%);">
             <svg class="w-9 h-9 text-white/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 2 3 6v6c0 5 3.8 9 9 10 5.2-1 9-5 9-10V6l-9-4z"/></svg>
           </div>
           <div class="p-5">
@@ -126,7 +126,7 @@
         </a>
 
         <a href="#" class="group rounded-xl border border-slate-200 overflow-hidden hover:shadow-lg transition-shadow cursor-pointer">
-          <div class="aspect-[16/9] bg-gradient-to-br from-surface to-primary/30 flex items-center justify-center">
+          <div class="aspect-[16/9] bg-surface flex items-center justify-center relative overflow-hidden" style="background-image: radial-gradient(circle at 25% 25%, rgba(237,0,0,0.2), transparent 60%);">
             <svg class="w-9 h-9 text-white/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
           </div>
           <div class="p-5">
@@ -137,7 +137,7 @@
         </a>
 
         <a href="#" class="group rounded-xl border border-slate-200 overflow-hidden hover:shadow-lg transition-shadow cursor-pointer">
-          <div class="aspect-[16/9] bg-gradient-to-br from-surface to-accent/30 flex items-center justify-center">
+          <div class="aspect-[16/9] bg-surface flex items-center justify-center relative overflow-hidden" style="background-image: radial-gradient(circle at 25% 25%, rgba(237,0,0,0.2), transparent 60%);">
             <svg class="w-9 h-9 text-white/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M9 3v18M3 9h18"/></svg>
           </div>
           <div class="p-5">
@@ -148,7 +148,7 @@
         </a>
 
         <a href="#" class="group rounded-xl border border-slate-200 overflow-hidden hover:shadow-lg transition-shadow cursor-pointer">
-          <div class="aspect-[16/9] bg-gradient-to-br from-surface to-primary/30 flex items-center justify-center">
+          <div class="aspect-[16/9] bg-surface flex items-center justify-center relative overflow-hidden" style="background-image: radial-gradient(circle at 25% 25%, rgba(237,0,0,0.2), transparent 60%);">
             <svg class="w-9 h-9 text-white/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/></svg>
           </div>
           <div class="p-5">
@@ -159,7 +159,7 @@
         </a>
 
         <a href="#" class="group rounded-xl border border-slate-200 overflow-hidden hover:shadow-lg transition-shadow cursor-pointer">
-          <div class="aspect-[16/9] bg-gradient-to-br from-surface to-accent/30 flex items-center justify-center">
+          <div class="aspect-[16/9] bg-surface flex items-center justify-center relative overflow-hidden" style="background-image: radial-gradient(circle at 25% 25%, rgba(237,0,0,0.2), transparent 60%);">
             <svg class="w-9 h-9 text-white/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/></svg>
           </div>
           <div class="p-5">
@@ -172,7 +172,7 @@
       </div>
     </section>
 
-    <!-- Real numbered pagination — not a javascript:void(0) "Load more" -->
+    <!-- Real numbered pagination: not a javascript:void(0) "Load more" -->
     <nav aria-label="Article pagination" class="max-w-8xl mx-auto px-6 pb-20">
       <ul class="flex items-center justify-center gap-2 text-sm font-semibold">
         <li><a href="#" class="flex items-center gap-1 px-3 py-2 rounded-lg text-slate-400 cursor-not-allowed" aria-disabled="true">← Prev</a></li>
@@ -189,10 +189,10 @@
     <section class="bg-ink py-16">
       <div class="max-w-xl mx-auto px-6 text-center">
         <h2 class="font-heading text-2xl font-bold text-white">One email a week. No fluff.</h2>
-        <p class="text-slate-400 mt-2">The Cyber Exchange digest — new research, no vendor pitches.</p>
+        <p class="text-slate-400 mt-2">The Cyber Exchange digest: new research, no vendor pitches.</p>
         <form class="mt-6 flex flex-col sm:flex-row gap-3" onsubmit="return false;">
           <label for="newsletter-email" class="sr-only">Email address</label>
-          <input id="newsletter-email" type="email" required placeholder="you@company.com" class="flex-1 bg-surface border border-white/10 rounded-lg px-4 py-3 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-accent">
+          <input id="newsletter-email" type="email" required placeholder="you@company.com" class="flex-1 bg-surface border border-white/10 rounded-lg px-4 py-3 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-primary">
           <button type="submit" class="bg-primary hover:bg-primaryDark text-white font-semibold px-6 py-3 rounded-lg transition-colors cursor-pointer">Subscribe</button>
         </form>
       </div>
@@ -205,7 +205,7 @@
         <span class="w-7 h-7 rounded-md bg-primary flex items-center justify-center text-white text-xs">SC</span>
         SecureCred
       </a>
-      <p class="text-xs text-slate-500">Concept redesign for portfolio/demo purposes — not affiliated with EC-Council.</p>
+      <p class="text-xs text-slate-500">Concept redesign for portfolio/demo purposes. Not affiliated with EC-Council.</p>
     </div>
   </footer>
 </body>

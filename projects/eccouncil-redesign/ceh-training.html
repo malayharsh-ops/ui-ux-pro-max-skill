@@ -8,16 +8,16 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            ink: '#0B1220', surface: '#111A2E', surface2: '#182236',
-            paper: '#F7F8FA', primary: '#DC2626', primaryDark: '#B91C1C', accent: '#22D3C7',
+            ink: '#1E1E1E', surface: '#262626',
+            paper: '#F9F9F9', primary: '#ED0000', primaryDark: '#C40000',
           },
-          fontFamily: { heading: ['Space Grotesk', 'sans-serif'], body: ['Inter', 'sans-serif'] },
+          fontFamily: { heading: ['Poppins', 'sans-serif'], body: ['Work Sans', 'sans-serif'] },
           maxWidth: { '8xl': '90rem' },
         }
       }
@@ -54,17 +54,17 @@
       </nav>
       <div class="flex items-center gap-3">
         <a href="#" class="hidden sm:inline-block text-sm font-semibold text-slate-300 hover:text-white cursor-pointer">Sign in</a>
-        <a href="#pricing" class="bg-primary hover:bg-primaryDark text-white text-sm font-semibold px-5 py-2.5 rounded-lg transition-colors cursor-pointer">Get Started</a>
+        <a href="#pricing" class="bg-primary hover:bg-primaryDark text-white text-sm font-semibold px-5 py-2.5 rounded-lg transition-colors cursor-pointer">Get Certified</a>
       </div>
     </div>
-    <!-- Sticky section sub-nav — replaces scroll-and-hunt through 20 modules -->
+    <!-- Sticky section sub-nav: replaces scroll-and-hunt through 20 modules -->
     <div class="border-t border-white/5 bg-surface hidden md:block">
       <div class="max-w-8xl mx-auto px-6 flex items-center gap-7 h-11 text-xs font-semibold text-slate-400 overflow-x-auto">
-        <a href="#overview" class="hover:text-accent whitespace-nowrap cursor-pointer">Overview</a>
-        <a href="#curriculum" class="hover:text-accent whitespace-nowrap cursor-pointer">Curriculum</a>
-        <a href="#exam" class="hover:text-accent whitespace-nowrap cursor-pointer">Exam</a>
-        <a href="#pricing" class="hover:text-accent whitespace-nowrap cursor-pointer">Pricing</a>
-        <a href="#faq" class="hover:text-accent whitespace-nowrap cursor-pointer">FAQ</a>
+        <a href="#overview" class="hover:text-primary whitespace-nowrap cursor-pointer">Overview</a>
+        <a href="#curriculum" class="hover:text-primary whitespace-nowrap cursor-pointer">Curriculum</a>
+        <a href="#exam" class="hover:text-primary whitespace-nowrap cursor-pointer">Exam</a>
+        <a href="#pricing" class="hover:text-primary whitespace-nowrap cursor-pointer">Pricing</a>
+        <a href="#faq" class="hover:text-primary whitespace-nowrap cursor-pointer">FAQ</a>
       </div>
     </div>
   </header>
@@ -75,14 +75,14 @@
       <div class="absolute inset-0 bg-gradient-to-b from-ink via-ink/95 to-ink"></div>
       <div class="relative max-w-8xl mx-auto px-6 pt-16 pb-16 md:pt-20 md:pb-20 grid md:grid-cols-[1.2fr_1fr] gap-12 items-center">
         <div>
-          <span class="inline-flex items-center gap-2 text-xs font-semibold tracking-wide text-accent bg-accent/10 border border-accent/30 rounded-full px-3 py-1 mb-6">
+          <span class="inline-flex items-center gap-2 text-xs font-semibold tracking-wide text-white bg-white/10 border border-white/20 rounded-full px-3 py-1 mb-6">
             World's #1 ethical hacking certification
           </span>
           <h1 class="font-heading text-4xl md:text-5xl font-bold text-white leading-tight">
-            Certified Ethical Hacker <span class="text-accent">v13</span>
+            Certified Ethical Hacker <span class="text-primary">v13</span>
           </h1>
           <p class="mt-5 text-lg text-slate-300 max-w-lg">
-            Offensive security skills with AI-assisted labs — built by the people who set the standard for the field.
+            Offensive security skills with AI-assisted labs, built by the people who set the standard for the field.
           </p>
           <div class="mt-8 flex flex-col sm:flex-row gap-4">
             <a href="#pricing" class="bg-primary hover:bg-primaryDark text-white font-semibold px-7 py-3.5 rounded-lg text-center transition-colors cursor-pointer">Compare training options</a>
@@ -143,13 +143,13 @@
       </div>
     </section>
 
-    <!-- Curriculum — accordion instead of a 20-item wall of text -->
+    <!-- Curriculum: accordion instead of a 20-item wall of text -->
     <section id="curriculum" class="bg-paper py-20">
       <div class="max-w-4xl mx-auto px-6">
         <div class="text-center mb-10">
           <span class="text-xs font-bold tracking-wider text-primary uppercase">Curriculum</span>
           <h2 class="font-heading text-3xl font-bold text-slate-900 mt-2">20 modules, grouped so you can skim</h2>
-          <p class="text-slate-500 mt-2">Expand any phase — nobody reads 20 rows in one pass.</p>
+          <p class="text-slate-500 mt-2">Expand any phase. Nobody reads 20 rows in one pass.</p>
         </div>
 
         <details class="bg-white rounded-xl border border-slate-200 mb-3 open:shadow-sm" open>
@@ -227,26 +227,26 @@
               <li class="flex gap-2"><svg class="w-4 h-4 text-primary shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Proctored, remote or test center</li>
             </ul>
           </div>
-          <div class="rounded-2xl border-2 border-accent/40 bg-accent/5 p-7">
-            <span class="text-xs font-bold text-ink bg-accent rounded px-2 py-1">OPTIONAL · UNLOCKS "MASTER"</span>
+          <div class="rounded-2xl border-2 border-primary bg-primary/5 p-7">
+            <span class="text-xs font-bold text-white bg-ink rounded px-2 py-1">OPTIONAL · UNLOCKS "MASTER"</span>
             <h3 class="font-heading font-semibold text-xl text-slate-900 mt-4">Practical Exam</h3>
             <ul class="mt-4 space-y-2.5 text-sm text-slate-600">
-              <li class="flex gap-2"><svg class="w-4 h-4 text-accent shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>20 hands-on challenges, live range</li>
-              <li class="flex gap-2"><svg class="w-4 h-4 text-accent shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>6-hour time limit</li>
-              <li class="flex gap-2"><svg class="w-4 h-4 text-accent shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Pass both → earn CEH Master</li>
+              <li class="flex gap-2"><svg class="w-4 h-4 text-primary shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>20 hands-on challenges, live range</li>
+              <li class="flex gap-2"><svg class="w-4 h-4 text-primary shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>6-hour time limit</li>
+              <li class="flex gap-2"><svg class="w-4 h-4 text-primary shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Pass both → earn CEH Master</li>
             </ul>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Pricing — one comparison table with a real "why" per column, not 4 disconnected cards -->
+    <!-- Pricing: one comparison table with a real "why" per column, not 4 disconnected cards -->
     <section id="pricing" class="bg-paper py-20">
       <div class="max-w-8xl mx-auto px-6">
         <div class="text-center mb-10">
           <span class="text-xs font-bold tracking-wider text-primary uppercase">Pricing</span>
           <h2 class="font-heading text-3xl font-bold text-slate-900 mt-2">Pick a format, not just a price</h2>
-          <p class="text-slate-500 mt-2">Each tier answers a different question — how much guidance and time do you have?</p>
+          <p class="text-slate-500 mt-2">Each tier answers a different question: how much guidance and time do you have?</p>
         </div>
 
         <div class="overflow-x-auto -mx-6 px-6">
@@ -263,7 +263,7 @@
                   <p class="text-2xl font-heading font-bold text-slate-900 mt-1">$2,499</p>
                 </th>
                 <th class="text-center p-4 bg-ink rounded-t-xl border border-b-0 border-ink relative">
-                  <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-accent text-ink text-[10px] font-bold px-2 py-0.5 rounded-full">MOST CHOSEN</span>
+                  <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white text-[10px] font-bold px-2 py-0.5 rounded-full">MOST CHOSEN</span>
                   <p class="font-heading font-semibold text-white">Unlimited</p>
                   <p class="text-2xl font-heading font-bold text-white mt-1">$3,999</p>
                 </th>
@@ -283,10 +283,10 @@
               </tr>
               <tr>
                 <th scope="row" class="text-left p-4 font-semibold text-slate-700 bg-transparent">Instructor access</th>
-                <td class="p-4 text-center bg-white border-x border-t border-slate-200">—</td>
+                <td class="p-4 text-center bg-white border-x border-t border-slate-200">–</td>
                 <td class="p-4 text-center bg-white border-x border-t border-slate-200">✓ Live cohort</td>
                 <td class="p-4 text-center bg-ink text-white border-t border-ink">✓ Live cohort</td>
-                <td class="p-4 text-center bg-white border-x border-t border-slate-200">—</td>
+                <td class="p-4 text-center bg-white border-x border-t border-slate-200">–</td>
               </tr>
               <tr>
                 <th scope="row" class="text-left p-4 font-semibold text-slate-700 bg-transparent">Access window</th>
@@ -297,10 +297,10 @@
               </tr>
               <tr>
                 <th scope="row" class="text-left p-4 font-semibold text-slate-700 bg-transparent">Practical exam retake</th>
-                <td class="p-4 text-center bg-white border-x border-t border-b border-slate-200 rounded-b-xl">—</td>
+                <td class="p-4 text-center bg-white border-x border-t border-b border-slate-200 rounded-b-xl">–</td>
                 <td class="p-4 text-center bg-white border-x border-t border-b border-slate-200 rounded-b-xl">1 included</td>
                 <td class="p-4 text-center bg-ink text-white border-t border-b border-ink rounded-b-xl">Unlimited</td>
-                <td class="p-4 text-center bg-white border-x border-t border-b border-slate-200 rounded-b-xl">—</td>
+                <td class="p-4 text-center bg-white border-x border-t border-b border-slate-200 rounded-b-xl">–</td>
               </tr>
             </tbody>
           </table>
@@ -348,7 +348,7 @@
               Can I switch tiers after I start?
               <svg class="chev w-5 h-5 text-slate-400 transition-transform shrink-0 ml-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
             </summary>
-            <p class="pb-5 text-sm text-slate-600">Yes — you can upgrade from On-Demand to Live Online or Unlimited at any time; you'll only pay the difference.</p>
+            <p class="pb-5 text-sm text-slate-600">Yes. You can upgrade from On-Demand to Live Online or Unlimited at any time; you'll only pay the difference.</p>
           </details>
           <details class="bg-white rounded-xl border border-slate-200 px-6">
             <summary class="flex items-center justify-between py-5 cursor-pointer font-semibold text-slate-900">
@@ -365,7 +365,7 @@
     <section class="bg-ink py-16">
       <div class="max-w-3xl mx-auto px-6 text-center">
         <h2 class="font-heading text-3xl font-bold text-white">Ready to start CEH v13?</h2>
-        <p class="text-slate-400 mt-3">One decision — pick your format — and you're enrolled today.</p>
+        <p class="text-slate-400 mt-3">One decision: pick your format, and you're enrolled today.</p>
         <a href="#pricing" class="inline-block mt-7 bg-primary hover:bg-primaryDark text-white font-semibold px-8 py-3.5 rounded-lg transition-colors cursor-pointer">Compare training options</a>
       </div>
     </section>
@@ -377,7 +377,7 @@
         <span class="w-7 h-7 rounded-md bg-primary flex items-center justify-center text-white text-xs">SC</span>
         SecureCred
       </a>
-      <p class="text-xs text-slate-500">Concept redesign for portfolio/demo purposes — not affiliated with EC-Council.</p>
+      <p class="text-xs text-slate-500">Concept redesign for portfolio/demo purposes. Not affiliated with EC-Council.</p>
     </div>
   </footer>
 </body>
