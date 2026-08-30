@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cyber Exchange | Security Research &amp; Career Guides | SecureCred</title>
+  <meta name="description" content="Concept redesign of a cybersecurity resource hub: real filter chips, a consistent card grid, and numbered pagination links instead of javascript:void(0) load-more buttons.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: '#1E1E1E', surface: '#262626',
+            paper: '#F9F9F9', primary: '#ED0000', primaryDark: '#C40000',
+          },
+          fontFamily: { heading: ['Poppins', 'sans-serif'], body: ['Work Sans', 'sans-serif'] },
+          maxWidth: { '8xl': '90rem' },
+        }
+      }
+    }
+  </script>
+  <style>
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body class="bg-paper font-body text-slate-800 antialiased">
+
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[60] focus:bg-white focus:text-ink focus:px-4 focus:py-2 focus:rounded-lg">Skip to content</a>
+
+  <header class="sticky top-0 z-50 bg-ink/95 backdrop-blur border-b border-white/10">
+    <div class="max-w-8xl mx-auto px-6 flex items-center justify-between h-16">
+      <a href="index.html" class="flex items-center gap-2 font-heading font-bold text-lg text-white cursor-pointer">
+        <span class="w-8 h-8 rounded-md bg-primary flex items-center justify-center text-white text-sm">SC</span>
+        SecureCred
+      </a>
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300" aria-label="Primary">
+        <a href="index.html" class="hover:text-white transition-colors cursor-pointer">Home</a>
+        <a href="ceh-training.html" class="hover:text-white transition-colors cursor-pointer">CEH Training</a>
+        <a href="blog.html" class="text-white cursor-pointer">Cyber Exchange</a>
+        <a href="index.html#enterprise" class="hover:text-white transition-colors cursor-pointer">Enterprise</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <a href="#" class="hidden sm:inline-block text-sm font-semibold text-slate-300 hover:text-white cursor-pointer">Sign in</a>
+        <a href="ceh-training.html" class="bg-primary hover:bg-primaryDark text-white text-sm font-semibold px-5 py-2.5 rounded-lg transition-colors cursor-pointer">Get Certified</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Header + search -->
+    <section class="bg-ink py-14">
+      <div class="max-w-8xl mx-auto px-6">
+        <span class="text-xs font-bold tracking-wider text-primary uppercase">Cyber Exchange</span>
+        <h1 class="font-heading text-4xl font-bold text-white mt-2">Research, career guides, and field notes</h1>
+        <p class="text-slate-400 mt-3 max-w-xl">Written by practitioners, organized by the domain you're actually working in.</p>
+        <form class="mt-7 max-w-lg" role="search" onsubmit="return false;">
+          <label for="blog-search" class="sr-only">Search articles</label>
+          <div class="relative">
+            <svg class="w-5 h-5 text-slate-500 absolute left-4 top-1/2 -translate-y-1/2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+            <input id="blog-search" type="search" placeholder="Search articles, e.g. “ransomware response”" class="w-full bg-surface border border-white/10 rounded-lg pl-11 pr-4 py-3 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-primary">
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- Real filter chips (anchors with actual hrefs, aria-current for state) -->
+    <nav aria-label="Filter by category" class="bg-white border-b border-slate-100 sticky top-16 z-40">
+      <div class="max-w-8xl mx-auto px-6 py-4 flex gap-2.5 overflow-x-auto">
+        <a href="#" aria-current="true" class="whitespace-nowrap text-sm font-semibold px-4 py-2 rounded-full bg-ink text-white cursor-pointer">All</a>
+        <a href="#" class="whitespace-nowrap text-sm font-semibold px-4 py-2 rounded-full border border-slate-200 text-slate-600 hover:border-primary hover:text-primary transition-colors cursor-pointer">Ethical Hacking</a>
+        <a href="#" class="whitespace-nowrap text-sm font-semibold px-4 py-2 rounded-full border border-slate-200 text-slate-600 hover:border-primary hover:text-primary transition-colors cursor-pointer">Network Security</a>
+        <a href="#" class="whitespace-nowrap text-sm font-semibold px-4 py-2 rounded-full border border-slate-200 text-slate-600 hover:border-primary hover:text-primary transition-colors cursor-pointer">Cloud Security</a>
+        <a href="#" class="whitespace-nowrap text-sm font-semibold px-4 py-2 rounded-full border border-slate-200 text-slate-600 hover:border-primary hover:text-primary transition-colors cursor-pointer">Digital Forensics</a>
+        <a href="#" class="whitespace-nowrap text-sm font-semibold px-4 py-2 rounded-full border border-slate-200 text-slate-600 hover:border-primary hover:text-primary transition-colors cursor-pointer">DevSecOps</a>
+        <a href="#" class="whitespace-nowrap text-sm font-semibold px-4 py-2 rounded-full border border-slate-200 text-slate-600 hover:border-primary hover:text-primary transition-colors cursor-pointer">Executive Mgmt</a>
+      </div>
+    </nav>
+
+    <!-- Featured article -->
+    <section class="max-w-8xl mx-auto px-6 py-12">
+      <a href="#" class="group grid md:grid-cols-2 gap-0 rounded-2xl overflow-hidden border border-slate-200 hover:shadow-xl transition-shadow cursor-pointer">
+        <div class="bg-ink p-10 flex items-center justify-center min-h-[240px] relative overflow-hidden" style="background-image: radial-gradient(circle at 25% 25%, rgba(237,0,0,0.25), transparent 60%);">
+          <svg class="w-16 h-16 text-white/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 2 3 6v6c0 5 3.8 9 9 10 5.2-1 9-5 9-10V6l-9-4z"/><path d="m9 12 2 2 4-4"/></svg>
+        </div>
+        <div class="p-8 flex flex-col justify-center bg-white">
+          <span class="text-xs font-bold text-primary uppercase w-fit">Ethical Hacking · Featured</span>
+          <h2 class="font-heading text-2xl font-bold text-slate-900 mt-3 group-hover:text-primary transition-colors">
+            How AI is changing red-team reconnaissance, and what defenders should watch for
+          </h2>
+          <p class="text-sm text-slate-500 mt-3">A field look at LLM-assisted OSINT gathering, and three detection patterns worth building this quarter.</p>
+          <p class="text-xs text-slate-400 mt-5">Feb 18, 2026 · 8 min read</p>
+        </div>
+      </a>
+    </section>
+
+    <!-- Article grid: consistent cards, real hrefs -->
+    <section class="max-w-8xl mx-auto px-6 pb-8">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <a href="#" class="group rounded-xl border border-slate-200 overflow-hidden hover:shadow-lg transition-shadow cursor-pointer">
+          <div class="aspect-[16/9] bg-surface flex items-center justify-center relative overflow-hidden" style="background-image: radial-gradient(circle at 25% 25%, rgba(237,0,0,0.2), transparent 60%);">
+            <svg class="w-9 h-9 text-white/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M8 4v0M16 4v0"/></svg>
+          </div>
+          <div class="p-5">
+            <span class="text-xs font-bold text-primary uppercase">Network Security</span>
+            <h3 class="font-heading font-semibold text-slate-900 mt-2 group-hover:text-primary transition-colors">Zero Trust in practice: a rollout checklist for mid-size teams</h3>
+            <p class="text-xs text-slate-400 mt-3">Feb 14, 2026 · 6 min read</p>
+          </div>
+        </a>
+
+        <a href="#" class="group rounded-xl border border-slate-200 overflow-hidden hover:shadow-lg transition-shadow cursor-pointer">
+          <div class="aspect-[16/9] bg-surface flex items-center justify-center relative overflow-hidden" style="background-image: radial-gradient(circle at 25% 25%, rgba(237,0,0,0.2), transparent 60%);">
+            <svg class="w-9 h-9 text-white/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 2 3 6v6c0 5 3.8 9 9 10 5.2-1 9-5 9-10V6l-9-4z"/></svg>
+          </div>
+          <div class="p-5">
+            <span class="text-xs font-bold text-primary uppercase">Cloud Security</span>
+            <h3 class="font-heading font-semibold text-slate-900 mt-2 group-hover:text-primary transition-colors">Misconfigured S3 buckets are still the #1 breach vector</h3>
+            <p class="text-xs text-slate-400 mt-3">Feb 10, 2026 · 5 min read</p>
+          </div>
+        </a>
+
+        <a href="#" class="group rounded-xl border border-slate-200 overflow-hidden hover:shadow-lg transition-shadow cursor-pointer">
+          <div class="aspect-[16/9] bg-surface flex items-center justify-center relative overflow-hidden" style="background-image: radial-gradient(circle at 25% 25%, rgba(237,0,0,0.2), transparent 60%);">
+            <svg class="w-9 h-9 text-white/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+          </div>
+          <div class="p-5">
+            <span class="text-xs font-bold text-primary uppercase">Digital Forensics</span>
+            <h3 class="font-heading font-semibold text-slate-900 mt-2 group-hover:text-primary transition-colors">Chain of custody for cloud-native evidence: what changed</h3>
+            <p class="text-xs text-slate-400 mt-3">Feb 6, 2026 · 7 min read</p>
+          </div>
+        </a>
+
+        <a href="#" class="group rounded-xl border border-slate-200 overflow-hidden hover:shadow-lg transition-shadow cursor-pointer">
+          <div class="aspect-[16/9] bg-surface flex items-center justify-center relative overflow-hidden" style="background-image: radial-gradient(circle at 25% 25%, rgba(237,0,0,0.2), transparent 60%);">
+            <svg class="w-9 h-9 text-white/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M9 3v18M3 9h18"/></svg>
+          </div>
+          <div class="p-5">
+            <span class="text-xs font-bold text-primary uppercase">DevSecOps</span>
+            <h3 class="font-heading font-semibold text-slate-900 mt-2 group-hover:text-primary transition-colors">Shifting left without slowing releases: a pipeline audit</h3>
+            <p class="text-xs text-slate-400 mt-3">Jan 30, 2026 · 6 min read</p>
+          </div>
+        </a>
+
+        <a href="#" class="group rounded-xl border border-slate-200 overflow-hidden hover:shadow-lg transition-shadow cursor-pointer">
+          <div class="aspect-[16/9] bg-surface flex items-center justify-center relative overflow-hidden" style="background-image: radial-gradient(circle at 25% 25%, rgba(237,0,0,0.2), transparent 60%);">
+            <svg class="w-9 h-9 text-white/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/></svg>
+          </div>
+          <div class="p-5">
+            <span class="text-xs font-bold text-primary uppercase">Executive Management</span>
+            <h3 class="font-heading font-semibold text-slate-900 mt-2 group-hover:text-primary transition-colors">The board wants a cyber-risk number. Here's how to give them one</h3>
+            <p class="text-xs text-slate-400 mt-3">Jan 26, 2026 · 9 min read</p>
+          </div>
+        </a>
+
+        <a href="#" class="group rounded-xl border border-slate-200 overflow-hidden hover:shadow-lg transition-shadow cursor-pointer">
+          <div class="aspect-[16/9] bg-surface flex items-center justify-center relative overflow-hidden" style="background-image: radial-gradient(circle at 25% 25%, rgba(237,0,0,0.2), transparent 60%);">
+            <svg class="w-9 h-9 text-white/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/></svg>
+          </div>
+          <div class="p-5">
+            <span class="text-xs font-bold text-primary uppercase">Ethical Hacking</span>
+            <h3 class="font-heading font-semibold text-slate-900 mt-2 group-hover:text-primary transition-colors">CEH Practical debrief: what the 20 challenges actually test</h3>
+            <p class="text-xs text-slate-400 mt-3">Jan 21, 2026 · 5 min read</p>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- Real numbered pagination: not a javascript:void(0) "Load more" -->
+    <nav aria-label="Article pagination" class="max-w-8xl mx-auto px-6 pb-20">
+      <ul class="flex items-center justify-center gap-2 text-sm font-semibold">
+        <li><a href="#" class="flex items-center gap-1 px-3 py-2 rounded-lg text-slate-400 cursor-not-allowed" aria-disabled="true">← Prev</a></li>
+        <li><a href="#" aria-current="page" class="w-9 h-9 flex items-center justify-center rounded-lg bg-ink text-white cursor-pointer">1</a></li>
+        <li><a href="#" class="w-9 h-9 flex items-center justify-center rounded-lg text-slate-600 hover:bg-slate-100 cursor-pointer">2</a></li>
+        <li><a href="#" class="w-9 h-9 flex items-center justify-center rounded-lg text-slate-600 hover:bg-slate-100 cursor-pointer">3</a></li>
+        <li><span class="px-1 text-slate-400">…</span></li>
+        <li><a href="#" class="w-9 h-9 flex items-center justify-center rounded-lg text-slate-600 hover:bg-slate-100 cursor-pointer">12</a></li>
+        <li><a href="#" class="flex items-center gap-1 px-3 py-2 rounded-lg text-slate-600 hover:bg-slate-100 cursor-pointer">Next →</a></li>
+      </ul>
+    </nav>
+
+    <!-- Newsletter -->
+    <section class="bg-ink py-16">
+      <div class="max-w-xl mx-auto px-6 text-center">
+        <h2 class="font-heading text-2xl font-bold text-white">One email a week. No fluff.</h2>
+        <p class="text-slate-400 mt-2">The Cyber Exchange digest: new research, no vendor pitches.</p>
+        <form class="mt-6 flex flex-col sm:flex-row gap-3" onsubmit="return false;">
+          <label for="newsletter-email" class="sr-only">Email address</label>
+          <input id="newsletter-email" type="email" required placeholder="you@company.com" class="flex-1 bg-surface border border-white/10 rounded-lg px-4 py-3 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-primary">
+          <button type="submit" class="bg-primary hover:bg-primaryDark text-white font-semibold px-6 py-3 rounded-lg transition-colors cursor-pointer">Subscribe</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-ink border-t border-white/10 pt-10 pb-8">
+    <div class="max-w-8xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <a href="index.html" class="flex items-center gap-2 font-heading font-bold text-white cursor-pointer">
+        <span class="w-7 h-7 rounded-md bg-primary flex items-center justify-center text-white text-xs">SC</span>
+        SecureCred
+      </a>
+      <p class="text-xs text-slate-500">Concept redesign for portfolio/demo purposes. Not affiliated with EC-Council.</p>
+    </div>
+  </footer>
+</body>
+</html>
