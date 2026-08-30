@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
+  <script>document.documentElement.className = "js";</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SecureCred | Cybersecurity Certifications for the AI Era</title>
   <meta name="description" content="Concept redesign: a clearer, less overwhelming home for a cybersecurity certification body, with three audience paths, curated credentials, and one confident CTA.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23ED0000'/%3E%3Ctext x='16' y='22' font-family='Poppins,Arial,sans-serif' font-size='15' font-weight='700' fill='white' text-anchor='middle'%3ESC%3C/text%3E%3C/svg%3E">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,21 +32,35 @@
     }
   </script>
   <style>
+    html { scroll-behavior: smooth; }
+    [id] { scroll-margin-top: 5.5rem; }
     @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
       *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
     }
+    /* Visible on both light and dark surfaces: white core + red halo */
+    :focus-visible { outline: 2px solid #FFFFFF; outline-offset: 2px; box-shadow: 0 0 0 5px rgba(237,0,0,0.9); border-radius: 3px; }
+    .balance { text-wrap: balance; }
     .grid-overlay {
-      background-image: linear-gradient(rgba(148,163,184,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(148,163,184,0.08) 1px, transparent 1px);
-      background-size: 40px 40px;
+      background-image: linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px);
+      background-size: 44px 44px;
     }
+    /* Reveal-on-scroll. The hidden state is applied ONLY when JS is running and the
+       user has not asked for reduced motion, so content can never be stranded invisible. */
+    @media (prefers-reduced-motion: no-preference) {
+      .js [data-reveal], .js [data-reveal-group] > * {
+        opacity: 0; transform: translateY(12px);
+        transition: opacity .4s ease-out, transform .4s ease-out;
+      }
+      .js [data-reveal].is-in, .js [data-reveal-group] > .is-in { opacity: 1; transform: none; }
+    }
+
   </style>
 </head>
 <body class="bg-paper font-body text-slate-800 antialiased">
 
-  <!-- Skip link -->
   <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[60] focus:bg-white focus:text-ink focus:px-4 focus:py-2 focus:rounded-lg">Skip to content</a>
 
-  <!-- Nav: 3 links + 1 CTA, no mega-menu -->
   <header class="sticky top-0 z-50 bg-ink/95 backdrop-blur border-b border-white/10">
     <div class="max-w-8xl mx-auto px-6 flex items-center justify-between h-16">
       <a href="index.html" class="flex items-center gap-2 font-heading font-bold text-lg text-white cursor-pointer">
@@ -52,55 +68,74 @@
         SecureCred
       </a>
       <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300" aria-label="Primary">
-        <a href="index.html" class="text-white cursor-pointer">Home</a>
+        <a href="index.html" aria-current="page" class="text-white cursor-pointer">Home</a>
         <a href="ceh-training.html" class="hover:text-white transition-colors cursor-pointer">CEH Training</a>
         <a href="blog.html" class="hover:text-white transition-colors cursor-pointer">Cyber Exchange</a>
-        <a href="#paths" class="hover:text-white transition-colors cursor-pointer">Enterprise</a>
+        <a href="#enterprise" class="hover:text-white transition-colors cursor-pointer">Enterprise</a>
       </nav>
-      <div class="flex items-center gap-3">
-        <a href="#" class="hidden sm:inline-block text-sm font-semibold text-slate-300 hover:text-white cursor-pointer">Sign in</a>
-        <a href="ceh-training.html" class="bg-primary hover:bg-primaryDark text-white text-sm font-semibold px-5 py-2.5 rounded-lg transition-colors cursor-pointer">Get Certified</a>
+      <div class="flex items-center gap-2">
+        <a href="#" class="hidden sm:inline-block text-sm font-semibold text-slate-300 hover:text-white px-2 py-2 cursor-pointer">Sign in</a>
+        <a href="ceh-training.html" class="bg-primary hover:bg-primaryDark active:translate-y-px text-white text-sm font-semibold px-5 py-2.5 rounded-lg transition-colors cursor-pointer">Get Certified</a>
+        <button id="navToggle" type="button" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu"
+          class="md:hidden w-11 h-11 -mr-2 inline-flex items-center justify-center rounded-lg text-slate-300 hover:text-white hover:bg-white/10 transition-colors cursor-pointer">
+          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
       </div>
     </div>
+    <nav id="mobileNav" hidden aria-label="Primary mobile" class="md:hidden border-t border-white/10 bg-ink px-6 pb-4">
+      <a href="index.html" aria-current="page" class="flex items-center min-h-[44px] text-white font-medium border-b border-white/5 cursor-pointer">Home</a>
+      <a href="ceh-training.html" class="flex items-center min-h-[44px] text-slate-300 font-medium border-b border-white/5 cursor-pointer">CEH Training</a>
+      <a href="blog.html" class="flex items-center min-h-[44px] text-slate-300 font-medium border-b border-white/5 cursor-pointer">Cyber Exchange</a>
+      <a href="#enterprise" class="flex items-center min-h-[44px] text-slate-300 font-medium border-b border-white/5 cursor-pointer">Enterprise</a>
+      <a href="#" class="flex items-center min-h-[44px] text-slate-300 font-medium cursor-pointer">Sign in</a>
+    </nav>
   </header>
 
   <main id="main">
-    <!-- Hero -->
+    <!-- Hero: split, not centered. Real photography carries the left-to-right weight. -->
     <section class="relative bg-ink grid-overlay overflow-hidden">
-      <div class="absolute inset-0 bg-gradient-to-b from-ink via-ink/95 to-ink"></div>
-      <div class="relative max-w-8xl mx-auto px-6 pt-20 pb-16 md:pt-28 md:pb-24 text-center">
-        <span class="inline-flex items-center gap-2 text-xs font-semibold tracking-wide text-white bg-white/10 border border-white/20 rounded-full px-3 py-1 mb-6">
-          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/></svg>
-          Built for the AI era of cyber threats
-        </span>
-        <h1 class="font-heading text-4xl md:text-6xl font-bold text-white leading-tight max-w-4xl mx-auto">
-          Get certified by the people who wrote the book on ethical hacking
-        </h1>
-        <p class="mt-6 text-lg text-slate-300 max-w-2xl mx-auto">
-          One clear path to the credential you actually need, not 40 programs and 15 menus to dig through first.
-        </p>
-        <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a href="ceh-training.html" class="w-full sm:w-auto bg-primary hover:bg-primaryDark text-white font-semibold px-7 py-3.5 rounded-lg transition-colors cursor-pointer">
-            Find your certification
-          </a>
-          <a href="#paths" class="w-full sm:w-auto border border-white/20 text-white font-semibold px-7 py-3.5 rounded-lg hover:bg-white/5 transition-colors cursor-pointer">
-            Explore by audience
-          </a>
+      <div class="relative max-w-8xl mx-auto px-6 pt-16 pb-24 md:pt-20 md:pb-32 grid lg:grid-cols-[1.05fr_0.95fr] gap-12 lg:gap-16 items-center">
+        <div>
+          <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.08] balance max-w-[18ch]">
+            Get certified by the people who wrote the book on ethical hacking
+          </h1>
+          <p class="mt-6 text-lg text-slate-300 max-w-[52ch] leading-relaxed">
+            One clear path to the credential you actually need, not 40 programs and 15 menus to dig through first.
+          </p>
+          <div class="mt-9 flex flex-col sm:flex-row gap-4">
+            <a href="ceh-training.html" class="bg-primary hover:bg-primaryDark active:translate-y-px text-white font-semibold px-7 py-3.5 rounded-lg text-center transition-colors cursor-pointer">
+              Find your certification
+            </a>
+            <a href="#paths" class="border border-white/25 text-white font-semibold px-7 py-3.5 rounded-lg text-center hover:bg-white/10 active:translate-y-px transition-colors cursor-pointer">
+              Explore by audience
+            </a>
+          </div>
+          <p class="mt-8 text-sm text-slate-400">
+            Trusted by <span class="text-white font-semibold">400,000+</span> certified professionals in <span class="text-white font-semibold">145</span> countries
+          </p>
         </div>
-        <p class="mt-8 text-sm text-slate-400">
-          Trusted by <span class="text-white font-semibold">400,000+</span> certified professionals · <span class="text-white font-semibold">4.7/5</span> on Trustpilot · <span class="text-white font-semibold">145</span> countries
-        </p>
+        <!-- Brand "signal field": a designed graphic, not stock photography.
+             Replace with commissioned/licensed brand imagery when available. -->
+        <figure class="relative aspect-[4/3] rounded-2xl overflow-hidden bg-ink">
+          <svg class="absolute inset-0 w-full h-full" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><defs><radialGradient id="g7" cx="70%" cy="23%" r="70%"><stop offset="0" stop-color="#ED0000" stop-opacity=".55"/><stop offset=".55" stop-color="#ED0000" stop-opacity=".12"/><stop offset="1" stop-color="#ED0000" stop-opacity="0"/></radialGradient><linearGradient id="f7" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1E1E1E" stop-opacity="0"/><stop offset="1" stop-color="#1E1E1E" stop-opacity=".92"/></linearGradient></defs><rect width="800" height="600" fill="#1E1E1E"/><rect width="800" height="600" fill="url(#g7)"/><g fill="none" stroke="#FFFFFF" stroke-opacity=".10"><circle cx="560" cy="140" r="60"/><circle cx="560" cy="140" r="118"/><circle cx="560" cy="140" r="176"/><circle cx="560" cy="140" r="234"/></g><g stroke="#FFFFFF" stroke-opacity=".16" stroke-width="1"><line x1="276" y1="134" x2="425" y2="240"/><line x1="276" y1="134" x2="97" y2="105"/><line x1="276" y1="134" x2="135" y2="170"/><line x1="276" y1="134" x2="150" y2="118"/><line x1="276" y1="134" x2="434" y2="91"/><line x1="276" y1="134" x2="367" y2="207"/><line x1="506" y1="96" x2="425" y2="240"/><line x1="506" y1="96" x2="454" y2="255"/><line x1="506" y1="96" x2="652" y2="202"/><line x1="506" y1="96" x2="498" y2="243"/><line x1="506" y1="96" x2="434" y2="91"/><line x1="506" y1="96" x2="527" y2="270"/><line x1="506" y1="96" x2="367" y2="207"/><line x1="506" y1="96" x2="562" y2="202"/><line x1="425" y1="240" x2="454" y2="255"/><line x1="425" y1="240" x2="498" y2="243"/><line x1="425" y1="240" x2="434" y2="91"/><line x1="425" y1="240" x2="527" y2="270"/><line x1="425" y1="240" x2="367" y2="207"/><line x1="425" y1="240" x2="562" y2="202"/><line x1="89" y1="310" x2="74" y2="273"/><line x1="89" y1="310" x2="135" y2="170"/><line x1="89" y1="310" x2="175" y2="346"/><line x1="89" y1="310" x2="90" y2="161"/><line x1="89" y1="310" x2="220" y2="343"/><line x1="74" y1="273" x2="97" y2="105"/><line x1="74" y1="273" x2="135" y2="170"/><line x1="74" y1="273" x2="150" y2="118"/><line x1="74" y1="273" x2="175" y2="346"/><line x1="74" y1="273" x2="90" y2="161"/><line x1="74" y1="273" x2="220" y2="343"/><line x1="97" y1="105" x2="135" y2="170"/><line x1="97" y1="105" x2="150" y2="118"/><line x1="97" y1="105" x2="90" y2="161"/><line x1="347" y1="467" x2="490" y2="526"/><line x1="347" y1="467" x2="265" y2="462"/><line x1="347" y1="467" x2="269" y2="348"/><line x1="347" y1="467" x2="220" y2="343"/><line x1="347" y1="467" x2="418" y2="491"/><line x1="135" y1="170" x2="150" y2="118"/><line x1="135" y1="170" x2="175" y2="346"/><line x1="135" y1="170" x2="90" y2="161"/><line x1="490" y1="526" x2="607" y2="404"/><line x1="490" y1="526" x2="418" y2="491"/><line x1="454" y1="255" x2="498" y2="243"/><line x1="454" y1="255" x2="434" y2="91"/><line x1="454" y1="255" x2="527" y2="270"/><line x1="454" y1="255" x2="367" y2="207"/><line x1="454" y1="255" x2="562" y2="202"/><line x1="735" y1="83" x2="652" y2="202"/><line x1="735" y1="83" x2="738" y2="118"/><line x1="652" y1="202" x2="498" y2="243"/><line x1="652" y1="202" x2="527" y2="270"/><line x1="652" y1="202" x2="562" y2="202"/><line x1="652" y1="202" x2="738" y2="118"/><line x1="150" y1="118" x2="90" y2="161"/><line x1="265" y1="462" x2="175" y2="346"/><line x1="265" y1="462" x2="269" y2="348"/><line x1="265" y1="462" x2="220" y2="343"/><line x1="265" y1="462" x2="418" y2="491"/><line x1="175" y1="346" x2="269" y2="348"/><line x1="175" y1="346" x2="220" y2="343"/><line x1="498" y1="243" x2="434" y2="91"/><line x1="498" y1="243" x2="527" y2="270"/><line x1="498" y1="243" x2="367" y2="207"/><line x1="498" y1="243" x2="562" y2="202"/><line x1="434" y1="91" x2="367" y2="207"/><line x1="434" y1="91" x2="562" y2="202"/><line x1="527" y1="270" x2="367" y2="207"/><line x1="527" y1="270" x2="607" y2="404"/><line x1="527" y1="270" x2="562" y2="202"/><line x1="269" y1="348" x2="367" y2="207"/><line x1="269" y1="348" x2="220" y2="343"/></g><g><circle cx="276" cy="134" r="4" fill="#ED0000"/><circle cx="276" cy="134" r="9" fill="none" stroke="#ED0000" stroke-opacity=".45"/><circle cx="506" cy="96" r="2.5" fill="#FFFFFF" fill-opacity=".55"/><circle cx="425" cy="240" r="2.5" fill="#FFFFFF" fill-opacity=".55"/><circle cx="89" cy="310" r="2.5" fill="#FFFFFF" fill-opacity=".55"/><circle cx="74" cy="273" r="4" fill="#ED0000"/><circle cx="74" cy="273" r="9" fill="none" stroke="#ED0000" stroke-opacity=".45"/><circle cx="97" cy="105" r="2.5" fill="#FFFFFF" fill-opacity=".55"/><circle cx="347" cy="467" r="2.5" fill="#FFFFFF" fill-opacity=".55"/><circle cx="135" cy="170" r="2.5" fill="#FFFFFF" fill-opacity=".55"/><circle cx="490" cy="526" r="4" fill="#ED0000"/><circle cx="490" cy="526" r="9" fill="none" stroke="#ED0000" stroke-opacity=".45"/><circle cx="454" cy="255" r="2.5" fill="#FFFFFF" fill-opacity=".55"/><circle cx="735" cy="83" r="2.5" fill="#FFFFFF" fill-opacity=".55"/><circle cx="652" cy="202" r="2.5" fill="#FFFFFF" fill-opacity=".55"/><circle cx="150" cy="118" r="4" fill="#ED0000"/><circle cx="150" cy="118" r="9" fill="none" stroke="#ED0000" stroke-opacity=".45"/><circle cx="265" cy="462" r="2.5" fill="#FFFFFF" fill-opacity=".55"/><circle cx="175" cy="346" r="2.5" fill="#FFFFFF" fill-opacity=".55"/><circle cx="498" cy="243" r="2.5" fill="#FFFFFF" fill-opacity=".55"/><circle cx="434" cy="91" r="4" fill="#ED0000"/><circle cx="434" cy="91" r="9" fill="none" stroke="#ED0000" stroke-opacity=".45"/><circle cx="90" cy="161" r="2.5" fill="#FFFFFF" fill-opacity=".55"/><circle cx="527" cy="270" r="2.5" fill="#FFFFFF" fill-opacity=".55"/><circle cx="269" cy="348" r="2.5" fill="#FFFFFF" fill-opacity=".55"/><circle cx="367" cy="207" r="4" fill="#ED0000"/><circle cx="367" cy="207" r="9" fill="none" stroke="#ED0000" stroke-opacity=".45"/><circle cx="607" cy="404" r="2.5" fill="#FFFFFF" fill-opacity=".55"/><circle cx="220" cy="343" r="2.5" fill="#FFFFFF" fill-opacity=".55"/><circle cx="418" cy="491" r="2.5" fill="#FFFFFF" fill-opacity=".55"/><circle cx="562" cy="202" r="4" fill="#ED0000"/><circle cx="562" cy="202" r="9" fill="none" stroke="#ED0000" stroke-opacity=".45"/><circle cx="738" cy="118" r="2.5" fill="#FFFFFF" fill-opacity=".55"/></g><rect width="800" height="600" fill="url(#f7)"/></svg>
+          <figcaption class="absolute left-5 bottom-5 right-5 text-sm text-slate-200">
+            <span class="inline-flex items-center gap-2 bg-ink/70 backdrop-blur px-3 py-1.5 rounded-full border border-white/15">
+              <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+              Hands-on labs, not slideware
+            </span>
+          </figcaption>
+        </figure>
       </div>
     </section>
 
-    <!-- Audience path selector: replaces the unlabeled dropdown form -->
-    <section id="paths" class="max-w-8xl mx-auto px-6 -mt-10 md:-mt-14 relative pb-20">
-      <div class="grid md:grid-cols-3 gap-6">
+    <!-- Audience paths: overlaps the hero so the fold has somewhere to go -->
+    <section id="paths" class="max-w-8xl mx-auto px-6 -mt-14 relative pb-20">
+      <div class="grid md:grid-cols-3 gap-6" data-reveal-group>
         <div class="bg-white rounded-2xl shadow-xl shadow-slate-900/5 p-7">
           <div class="w-11 h-11 rounded-lg bg-primary/10 flex items-center justify-center mb-5">
             <svg class="w-5 h-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.5-7 8-7s8 3 8 7"/></svg>
           </div>
-          <h3 class="font-heading font-semibold text-lg text-slate-900">I'm an individual</h3>
+          <h2 class="font-heading font-semibold text-lg text-slate-900">I'm an individual</h2>
           <p class="mt-2 text-sm text-slate-500 leading-relaxed">Start or grow a security career with a certification employers actually screen for.</p>
           <a href="ceh-training.html" class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:text-primaryDark cursor-pointer">
             Browse certifications
@@ -111,7 +146,7 @@
           <div class="w-11 h-11 rounded-lg bg-primary/10 flex items-center justify-center mb-5">
             <svg class="w-5 h-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/></svg>
           </div>
-          <h3 class="font-heading font-semibold text-lg text-slate-900">I'm building a team</h3>
+          <h2 class="font-heading font-semibold text-lg text-slate-900">I'm building a team</h2>
           <p class="mt-2 text-sm text-slate-500 leading-relaxed">Upskill an existing security function with cohort training and progress reporting.</p>
           <a href="#enterprise" class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:text-primaryDark cursor-pointer">
             Talk to sales
@@ -122,7 +157,7 @@
           <div class="w-11 h-11 rounded-lg bg-primary/10 flex items-center justify-center mb-5">
             <svg class="w-5 h-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3 3 9h18l-9-6zM4 9v10h16V9M8 13v4M12 13v4M16 13v4"/></svg>
           </div>
-          <h3 class="font-heading font-semibold text-lg text-slate-900">I'm government / military</h3>
+          <h2 class="font-heading font-semibold text-lg text-slate-900">I'm government / military</h2>
           <p class="mt-2 text-sm text-slate-500 leading-relaxed">DoD 8570/8140-aligned programs and procurement support for public sector teams.</p>
           <a href="#enterprise" class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:text-primaryDark cursor-pointer">
             See compliance mapping
@@ -132,48 +167,39 @@
       </div>
     </section>
 
-    <!-- Curated certifications, not all 35+ at once -->
+    <!-- Certifications: one featured tile + a divided list, not a grid of identical cards -->
     <section class="bg-white border-y border-slate-100 py-20">
       <div class="max-w-8xl mx-auto px-6">
-        <div class="flex items-end justify-between flex-wrap gap-4 mb-10">
+        <div class="flex items-end justify-between flex-wrap gap-4 mb-10" data-reveal>
           <div>
-            <span class="text-xs font-bold tracking-wider text-primary uppercase">Most requested</span>
-            <h2 class="font-heading text-3xl font-bold text-slate-900 mt-2">Six certifications, most of the demand</h2>
-            <p class="text-slate-500 mt-2 max-w-xl">The rest of our 40+ programs are one click away; we just don't lead with all of them at once.</p>
+            <span class="text-xs font-bold tracking-wider text-primaryDark uppercase">Most requested</span>
+            <h2 class="font-heading text-3xl md:text-4xl font-bold text-slate-900 mt-2 balance max-w-[20ch]">Six certifications, most of the demand</h2>
+            <p class="text-slate-500 mt-3 max-w-[55ch]">The rest of our 40+ programs are one click away; we just don't lead with all of them at once.</p>
           </div>
-          <a href="#" class="text-sm font-semibold text-primary hover:text-primaryDark cursor-pointer whitespace-nowrap">View all 40+ certifications →</a>
+          <a href="#" class="text-sm font-semibold text-primary hover:text-primaryDark cursor-pointer whitespace-nowrap">View all 40+ certifications &rarr;</a>
         </div>
         <div class="grid lg:grid-cols-12 gap-6">
-          <!-- Featured: CEH gets real visual weight, not a card identical to the rest -->
-          <a href="ceh-training.html" class="group lg:col-span-5 rounded-2xl p-8 flex flex-col justify-between bg-ink relative overflow-hidden cursor-pointer min-h-[280px]" style="background-image: radial-gradient(circle at 85% 0%, rgba(237,0,0,0.28), transparent 55%);">
-            <div>
+          <a href="ceh-training.html" class="group lg:col-span-5 rounded-2xl overflow-hidden relative bg-ink cursor-pointer min-h-[320px] flex flex-col justify-end" data-reveal>
+            <svg class="absolute inset-0 w-full h-full opacity-90" viewBox="0 0 700 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><defs><radialGradient id="g13" cx="74%" cy="17%" r="70%"><stop offset="0" stop-color="#ED0000" stop-opacity=".55"/><stop offset=".55" stop-color="#ED0000" stop-opacity=".12"/><stop offset="1" stop-color="#ED0000" stop-opacity="0"/></radialGradient><linearGradient id="f13" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1E1E1E" stop-opacity="0"/><stop offset="1" stop-color="#1E1E1E" stop-opacity=".92"/></linearGradient></defs><rect width="700" height="700" fill="#1E1E1E"/><rect width="700" height="700" fill="url(#g13)"/><g fill="none" stroke="#FFFFFF" stroke-opacity=".10"><circle cx="520" cy="120" r="60"/><circle cx="520" cy="120" r="118"/><circle cx="520" cy="120" r="176"/></g><g stroke="#FFFFFF" stroke-opacity=".16" stroke-width="1"><line x1="202" y1="463" x2="224" y2="318"/><line x1="202" y1="463" x2="132" y2="570"/><line x1="202" y1="463" x2="200" y2="558"/><line x1="202" y1="463" x2="342" y2="503"/><line x1="202" y1="463" x2="266" y2="317"/><line x1="463" y1="558" x2="541" y2="533"/><line x1="463" y1="558" x2="551" y2="497"/><line x1="463" y1="558" x2="342" y2="503"/><line x1="463" y1="558" x2="547" y2="528"/><line x1="156" y1="202" x2="133" y2="199"/><line x1="156" y1="202" x2="224" y2="318"/><line x1="156" y1="202" x2="51" y2="228"/><line x1="156" y1="202" x2="266" y2="317"/><line x1="156" y1="202" x2="235" y2="137"/><line x1="133" y1="199" x2="224" y2="318"/><line x1="133" y1="199" x2="51" y2="228"/><line x1="133" y1="199" x2="235" y2="137"/><line x1="494" y1="145" x2="369" y2="193"/><line x1="369" y1="193" x2="390" y2="317"/><line x1="369" y1="193" x2="235" y2="137"/><line x1="224" y1="318" x2="266" y2="317"/><line x1="558" y1="419" x2="541" y2="533"/><line x1="558" y1="419" x2="551" y2="497"/><line x1="558" y1="419" x2="627" y2="526"/><line x1="558" y1="419" x2="547" y2="528"/><line x1="558" y1="419" x2="649" y2="467"/><line x1="132" y1="570" x2="200" y2="558"/><line x1="541" y1="533" x2="551" y2="497"/><line x1="541" y1="533" x2="627" y2="526"/><line x1="541" y1="533" x2="547" y2="528"/><line x1="541" y1="533" x2="649" y2="467"/><line x1="551" y1="497" x2="627" y2="526"/><line x1="551" y1="497" x2="547" y2="528"/><line x1="551" y1="497" x2="649" y2="467"/><line x1="627" y1="526" x2="547" y2="528"/><line x1="627" y1="526" x2="649" y2="467"/><line x1="200" y1="558" x2="342" y2="503"/><line x1="390" y1="317" x2="266" y2="317"/><line x1="547" y1="528" x2="649" y2="467"/></g><g><circle cx="202" cy="463" r="4" fill="#ED0000"/><circle cx="202" cy="463" r="9" fill="none" stroke="#ED0000" stroke-opacity=".45"/><circle cx="463" cy="558" r="2.5" fill="#FFFFFF" fill-opacity=".55"/><circle cx="156" cy="202" r="2.5" fill="#FFFFFF" fill-opacity=".55"/><circle cx="133" cy="199" r="2.5" fill="#FFFFFF" fill-opacity=".55"/><circle cx="494" cy="145" r="4" fill="#ED0000"/><circle cx="494" cy="145" r="9" fill="none" stroke="#ED0000" stroke-opacity=".45"/><circle cx="369" cy="193" r="2.5" fill="#FFFFFF" fill-opacity=".55"/><circle cx="224" cy="318" r="2.5" fill="#FFFFFF" fill-opacity=".55"/><circle cx="558" cy="419" r="2.5" fill="#FFFFFF" fill-opacity=".55"/><circle cx="51" cy="228" r="4" fill="#ED0000"/><circle cx="51" cy="228" r="9" fill="none" stroke="#ED0000" stroke-opacity=".45"/><circle cx="132" cy="570" r="2.5" fill="#FFFFFF" fill-opacity=".55"/><circle cx="541" cy="533" r="2.5" fill="#FFFFFF" fill-opacity=".55"/><circle cx="551" cy="497" r="2.5" fill="#FFFFFF" fill-opacity=".55"/><circle cx="627" cy="526" r="4" fill="#ED0000"/><circle cx="627" cy="526" r="9" fill="none" stroke="#ED0000" stroke-opacity=".45"/><circle cx="200" cy="558" r="2.5" fill="#FFFFFF" fill-opacity=".55"/><circle cx="342" cy="503" r="2.5" fill="#FFFFFF" fill-opacity=".55"/><circle cx="390" cy="317" r="2.5" fill="#FFFFFF" fill-opacity=".55"/><circle cx="266" cy="317" r="4" fill="#ED0000"/><circle cx="266" cy="317" r="9" fill="none" stroke="#ED0000" stroke-opacity=".45"/><circle cx="235" cy="137" r="2.5" fill="#FFFFFF" fill-opacity=".55"/><circle cx="547" cy="528" r="2.5" fill="#FFFFFF" fill-opacity=".55"/><circle cx="649" cy="467" r="2.5" fill="#FFFFFF" fill-opacity=".55"/></g><rect width="700" height="700" fill="url(#f13)"/></svg>
+            <div class="absolute inset-0" style="background-image: radial-gradient(circle at 80% 10%, rgba(237,0,0,0.5), transparent 55%), linear-gradient(to top, rgba(30,30,30,0.97) 30%, rgba(30,30,30,0.45));"></div>
+            <div class="relative p-8">
               <span class="text-xs font-bold text-white bg-primary rounded px-2 py-1">MOST POPULAR</span>
-              <h3 class="font-heading text-2xl font-bold text-white mt-5">Certified Ethical Hacker (CEH)</h3>
+              <h3 class="font-heading text-2xl font-bold text-white mt-5 balance">Certified Ethical Hacker (CEH)</h3>
               <p class="text-slate-300 mt-3 max-w-sm">Offensive security fundamentals, now with AI-assisted labs. The credential 92% of employers screen for first.</p>
-              <dl class="mt-8 grid grid-cols-3 gap-4 max-w-sm border-t border-white/10 pt-6">
-                <div>
-                  <dt class="text-[11px] text-slate-400">Modules</dt>
-                  <dd class="text-lg font-heading font-semibold text-white mt-0.5">20</dd>
-                </div>
-                <div>
-                  <dt class="text-[11px] text-slate-400">Format</dt>
-                  <dd class="text-lg font-heading font-semibold text-white mt-0.5">3 ways</dd>
-                </div>
-                <div>
-                  <dt class="text-[11px] text-slate-400">From</dt>
-                  <dd class="text-lg font-heading font-semibold text-white mt-0.5">$1,699</dd>
-                </div>
+              <dl class="mt-7 grid grid-cols-3 gap-4 max-w-sm border-t border-white/15 pt-5">
+                <div><dt class="text-[11px] text-slate-400">Modules</dt><dd class="text-lg font-heading font-semibold text-white mt-0.5">20</dd></div>
+                <div><dt class="text-[11px] text-slate-400">Formats</dt><dd class="text-lg font-heading font-semibold text-white mt-0.5">3</dd></div>
+                <div><dt class="text-[11px] text-slate-400">From</dt><dd class="text-lg font-heading font-semibold text-white mt-0.5">$1,699</dd></div>
               </dl>
+              <span class="inline-flex items-center gap-1.5 text-sm font-semibold text-white mt-7 group-hover:gap-2.5 transition-all">View program
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </span>
             </div>
-            <span class="inline-flex items-center gap-1.5 text-sm font-semibold text-white mt-8 group-hover:gap-2.5 transition-all">View program
-              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-            </span>
           </a>
-          <!-- The rest: a plain divided list, not five more repeated cards -->
-          <div class="lg:col-span-7 divide-y divide-slate-100 border-y border-slate-100">
+          <div class="lg:col-span-7 divide-y divide-slate-100 border-y border-slate-100" data-reveal-group>
             <a href="#" class="group flex items-center justify-between gap-6 py-5 cursor-pointer">
               <div>
-                <span class="text-xs font-bold text-slate-400 uppercase tracking-wide">Executive</span>
+                <span class="text-xs font-bold text-slate-600 uppercase tracking-wide">Executive</span>
                 <h3 class="font-heading font-semibold text-slate-900 mt-1">Certified CISO (C|CISO)</h3>
                 <p class="text-sm text-slate-500 mt-1">Governance, risk, and security leadership for senior roles.</p>
               </div>
@@ -181,7 +207,7 @@
             </a>
             <a href="#" class="group flex items-center justify-between gap-6 py-5 cursor-pointer">
               <div>
-                <span class="text-xs font-bold text-slate-400 uppercase tracking-wide">Defensive</span>
+                <span class="text-xs font-bold text-slate-600 uppercase tracking-wide">Defensive</span>
                 <h3 class="font-heading font-semibold text-slate-900 mt-1">Certified SOC Analyst (CSA)</h3>
                 <p class="text-sm text-slate-500 mt-1">Entry to mid-level monitoring, triage, and incident response.</p>
               </div>
@@ -189,7 +215,7 @@
             </a>
             <a href="#" class="group flex items-center justify-between gap-6 py-5 cursor-pointer">
               <div>
-                <span class="text-xs font-bold text-slate-400 uppercase tracking-wide">Forensics</span>
+                <span class="text-xs font-bold text-slate-600 uppercase tracking-wide">Forensics</span>
                 <h3 class="font-heading font-semibold text-slate-900 mt-1">Computer Hacking Forensic Investigator</h3>
                 <p class="text-sm text-slate-500 mt-1">Evidence handling and investigation for digital incidents.</p>
               </div>
@@ -197,7 +223,7 @@
             </a>
             <a href="#" class="group flex items-center justify-between gap-6 py-5 cursor-pointer">
               <div>
-                <span class="text-xs font-bold text-slate-400 uppercase tracking-wide">Cloud</span>
+                <span class="text-xs font-bold text-slate-600 uppercase tracking-wide">Cloud</span>
                 <h3 class="font-heading font-semibold text-slate-900 mt-1">Certified Cloud Security Engineer</h3>
                 <p class="text-sm text-slate-500 mt-1">Securing multi-cloud infrastructure and workloads.</p>
               </div>
@@ -205,7 +231,7 @@
             </a>
             <a href="#" class="group flex items-center justify-between gap-6 py-5 cursor-pointer">
               <div>
-                <span class="text-xs font-bold text-slate-400 uppercase tracking-wide">Network</span>
+                <span class="text-xs font-bold text-slate-600 uppercase tracking-wide">Network</span>
                 <h3 class="font-heading font-semibold text-slate-900 mt-1">Certified Network Defender (CND)</h3>
                 <p class="text-sm text-slate-500 mt-1">Hardening, detection, and response for network defenders.</p>
               </div>
@@ -216,56 +242,61 @@
       </div>
     </section>
 
-    <!-- Trust stats, front-loaded not buried -->
+    <!-- Proof: stats sourced from EC-Council's published CEH figures, with the source stated -->
     <section class="bg-ink py-16">
-      <div class="max-w-8xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-        <div>
-          <p class="font-heading text-3xl md:text-4xl font-bold text-white">20+</p>
-          <p class="text-sm text-slate-400 mt-1">Years defining the field</p>
+      <div class="max-w-8xl mx-auto px-6">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center" data-reveal-group>
+          <div>
+            <p class="font-heading text-3xl md:text-4xl font-bold text-white">20+</p>
+            <p class="text-sm text-slate-400 mt-1">Years defining the field</p>
+          </div>
+          <div>
+            <p class="font-heading text-3xl md:text-4xl font-bold text-white">92%</p>
+            <p class="text-sm text-slate-400 mt-1">Employers prefer CEH grads</p>
+          </div>
+          <div>
+            <p class="font-heading text-3xl md:text-4xl font-bold text-white">99%</p>
+            <p class="text-sm text-slate-400 mt-1">Found the virtual labs helpful</p>
+          </div>
+          <div>
+            <p class="font-heading text-3xl md:text-4xl font-bold text-white">145</p>
+            <p class="text-sm text-slate-400 mt-1">Countries reached</p>
+          </div>
         </div>
-        <div>
-          <p class="font-heading text-3xl md:text-4xl font-bold text-white">92%</p>
-          <p class="text-sm text-slate-400 mt-1">Employers prefer CEH grads</p>
-        </div>
-        <div>
-          <p class="font-heading text-3xl md:text-4xl font-bold text-white">3,500+</p>
-          <p class="text-sm text-slate-400 mt-1">Organizations trained</p>
-        </div>
-        <div>
-          <p class="font-heading text-3xl md:text-4xl font-bold text-white">145</p>
-          <p class="text-sm text-slate-400 mt-1">Countries reached</p>
-        </div>
+        <p class="text-center text-xs text-slate-400 mt-8">Figures as published by EC-Council. Reproduced here for a design concept.</p>
       </div>
     </section>
 
-    <!-- Testimonial -->
+    <!-- Testimonial paired with a face: a quote with no person attached reads as invented -->
     <section class="bg-paper py-20">
-      <div class="max-w-3xl mx-auto px-6 text-center">
-        <svg class="w-8 h-8 text-primary/30 mx-auto mb-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 7h4v4c0 3-2 5-5 5v-2c1.5 0 2-1 2-2H7V7zm8 0h4v4c0 3-2 5-5 5v-2c1.5 0 2-1 2-2h-1V7z"/></svg>
-        <p class="font-heading text-xl md:text-2xl text-slate-800 leading-relaxed">
-          "I compared six programs. This was the only one where I could tell in two minutes which certification I actually needed."
-        </p>
-        <p class="mt-6 text-sm font-semibold text-slate-900">Renata Ibarra</p>
-        <p class="text-sm text-slate-500">SOC Analyst II, promoted after CEH</p>
+      <div class="max-w-5xl mx-auto px-6 grid md:grid-cols-[auto_1fr] gap-8 md:gap-12 items-center" data-reveal>
+        <div aria-hidden="true" class="w-28 h-28 md:w-36 md:h-36 rounded-2xl shrink-0 mx-auto md:mx-0 bg-ink text-white font-heading font-bold text-4xl flex items-center justify-center">RI</div>
+        <blockquote>
+          <p class="font-heading text-xl md:text-2xl text-slate-800 leading-relaxed balance">
+            &ldquo;I compared six programs. This was the only one where I could tell in two minutes which certification I actually needed.&rdquo;
+          </p>
+          <footer class="mt-5 text-sm">
+            <span class="font-semibold text-slate-900">Renata Ibarra</span>
+            <span class="text-slate-500">&middot; SOC Analyst II, promoted after CEH</span>
+          </footer>
+        </blockquote>
       </div>
     </section>
 
-    <!-- Enterprise strip -->
     <section id="enterprise" class="max-w-8xl mx-auto px-6 pb-20">
-      <div class="bg-surface rounded-3xl p-10 md:p-14 grid md:grid-cols-[1.3fr_1fr] gap-10 items-center">
+      <div class="bg-surface rounded-3xl p-10 md:p-14 grid md:grid-cols-[1.3fr_1fr] gap-10 items-center" data-reveal>
         <div>
-          <h2 class="font-heading text-2xl md:text-3xl font-bold text-white">Training a security team, not just one hire?</h2>
-          <p class="text-slate-400 mt-3 max-w-lg">Cohort pricing, a named program manager, and DoD 8570/8140-aligned tracks for public sector teams.</p>
+          <h2 class="font-heading text-2xl md:text-3xl font-bold text-white balance">Training a security team, not just one hire?</h2>
+          <p class="text-slate-400 mt-3 max-w-[52ch]">Cohort pricing, a named program manager, and DoD 8570/8140-aligned tracks for public sector teams.</p>
         </div>
         <div class="flex flex-col sm:flex-row gap-3 md:justify-end">
-          <a href="#" class="bg-primary hover:bg-primaryDark text-white font-semibold px-6 py-3 rounded-lg text-center transition-colors cursor-pointer">Talk to sales</a>
-          <a href="#" class="border border-white/20 text-white font-semibold px-6 py-3 rounded-lg text-center hover:bg-white/5 transition-colors cursor-pointer">Download compliance sheet</a>
+          <a href="#" class="bg-primary hover:bg-primaryDark active:translate-y-px text-white font-semibold px-6 py-3 rounded-lg text-center transition-colors cursor-pointer">Talk to sales</a>
+          <a href="#" class="border border-white/25 text-white font-semibold px-6 py-3 rounded-lg text-center hover:bg-white/10 active:translate-y-px transition-colors cursor-pointer">Download compliance sheet</a>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- Footer: condensed, not a full mega-menu -->
   <footer class="bg-ink border-t border-white/10 pt-16 pb-10">
     <div class="max-w-8xl mx-auto px-6">
       <div class="grid sm:grid-cols-3 gap-10">
@@ -277,30 +308,72 @@
           <p class="text-sm text-slate-400 mt-4 max-w-xs">Concept redesign of a cybersecurity certification body's public site: homepage, flagship course page, and resource hub.</p>
         </div>
         <div>
-          <p class="text-sm font-semibold text-white mb-4">Explore</p>
-          <ul class="space-y-2.5 text-sm text-slate-400">
-            <li><a href="index.html" class="hover:text-white cursor-pointer">Home</a></li>
-            <li><a href="ceh-training.html" class="hover:text-white cursor-pointer">CEH Training</a></li>
-            <li><a href="blog.html" class="hover:text-white cursor-pointer">Cyber Exchange</a></li>
-            <li><a href="#enterprise" class="hover:text-white cursor-pointer">Enterprise &amp; Government</a></li>
+          <h2 class="text-sm font-semibold text-white mb-4">Explore</h2>
+          <ul class="space-y-1 text-sm text-slate-400">
+            <li><a href="index.html" class="flex items-center min-h-[40px] hover:text-white cursor-pointer">Home</a></li>
+            <li><a href="ceh-training.html" class="flex items-center min-h-[40px] hover:text-white cursor-pointer">CEH Training</a></li>
+            <li><a href="blog.html" class="flex items-center min-h-[40px] hover:text-white cursor-pointer">Cyber Exchange</a></li>
+            <li><a href="#enterprise" class="flex items-center min-h-[40px] hover:text-white cursor-pointer">Enterprise &amp; Government</a></li>
           </ul>
         </div>
         <div>
-          <p class="text-sm font-semibold text-white mb-4">Contact</p>
-          <ul class="space-y-2.5 text-sm text-slate-400">
-            <li>1-888-330-HACK</li>
-            <li><a href="#enterprise" class="hover:text-white cursor-pointer">Talk to sales</a></li>
+          <h2 class="text-sm font-semibold text-white mb-4">Contact</h2>
+          <ul class="space-y-1 text-sm text-slate-400">
+            <li class="flex items-center min-h-[40px]">1-888-330-HACK</li>
+            <li><a href="#enterprise" class="flex items-center min-h-[40px] hover:text-white cursor-pointer">Talk to sales</a></li>
           </ul>
         </div>
       </div>
       <div class="border-t border-white/10 mt-12 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <p class="text-xs text-slate-500">Concept redesign for portfolio/demo purposes. Not affiliated with EC-Council.</p>
-        <div class="flex gap-4 text-xs text-slate-500">
+        <p class="text-xs text-slate-400">Concept redesign for portfolio/demo purposes. Not affiliated with EC-Council.</p>
+        <div class="flex gap-4 text-xs text-slate-400">
           <a href="#" class="hover:text-white cursor-pointer">Privacy</a>
           <a href="#" class="hover:text-white cursor-pointer">Terms</a>
         </div>
       </div>
     </div>
   </footer>
+
+  <script>
+    // Mobile nav disclosure
+    (function () {
+      var btn = document.getElementById('navToggle');
+      var panel = document.getElementById('mobileNav');
+      if (!btn || !panel) return;
+      function setOpen(open) {
+        panel.hidden = !open;
+        btn.setAttribute('aria-expanded', String(open));
+        btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      }
+      btn.addEventListener('click', function () { setOpen(panel.hidden); });
+      panel.addEventListener('click', function (e) { if (e.target.tagName === 'A') setOpen(false); });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !panel.hidden) { setOpen(false); btn.focus(); } });
+    })();
+
+    // Reveal on scroll, with three independent guarantees that content ends up visible:
+    // no-JS never hides it, unsupported IntersectionObserver reveals everything, and a
+    // timeout reveals anything the observer somehow missed.
+    (function () {
+      var targets = [].slice.call(document.querySelectorAll('[data-reveal]'))
+        .concat([].slice.call(document.querySelectorAll('[data-reveal-group] > *')));
+      function revealAll() { targets.forEach(function (el) { el.classList.add('is-in'); }); }
+      if (!('IntersectionObserver' in window)) { revealAll(); return; }
+
+      [].slice.call(document.querySelectorAll('[data-reveal-group]')).forEach(function (g) {
+        [].slice.call(g.children).forEach(function (child, i) {
+          child.style.transitionDelay = Math.min(i * 60, 300) + 'ms';
+        });
+      });
+
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) { entry.target.classList.add('is-in'); io.unobserve(entry.target); }
+        });
+      }, { rootMargin: '0px 0px -8% 0px', threshold: 0.01 });
+      targets.forEach(function (el) { io.observe(el); });
+
+      setTimeout(revealAll, 2500);
+    })();
+  </script>
 </body>
 </html>

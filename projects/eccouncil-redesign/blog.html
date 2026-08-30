@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
+  <script>document.documentElement.className = "js";</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cyber Exchange | Security Research &amp; Career Guides | SecureCred</title>
   <meta name="description" content="Concept redesign of a cybersecurity resource hub: real filter chips, a consistent card grid, and numbered pagination links instead of javascript:void(0) load-more buttons.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23ED0000'/%3E%3Ctext x='16' y='22' font-family='Poppins,Arial,sans-serif' font-size='15' font-weight='700' fill='white' text-anchor='middle'%3ESC%3C/text%3E%3C/svg%3E">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,9 +26,29 @@
     }
   </script>
   <style>
+    html { scroll-behavior: smooth; }
+    [id] { scroll-margin-top: 5.5rem; }
     @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
       *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
     }
+    /* Visible on both light and dark surfaces: white core + red halo */
+    :focus-visible { outline: 2px solid #FFFFFF; outline-offset: 2px; box-shadow: 0 0 0 5px rgba(237,0,0,0.9); border-radius: 3px; }
+    .balance { text-wrap: balance; }
+    .grid-overlay {
+      background-image: linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px);
+      background-size: 44px 44px;
+    }
+    /* Reveal-on-scroll. The hidden state is applied ONLY when JS is running and the
+       user has not asked for reduced motion, so content can never be stranded invisible. */
+    @media (prefers-reduced-motion: no-preference) {
+      .js [data-reveal], .js [data-reveal-group] > * {
+        opacity: 0; transform: translateY(12px);
+        transition: opacity .4s ease-out, transform .4s ease-out;
+      }
+      .js [data-reveal].is-in, .js [data-reveal-group] > .is-in { opacity: 1; transform: none; }
+    }
+
   </style>
 </head>
 <body class="bg-paper font-body text-slate-800 antialiased">
@@ -48,16 +70,27 @@
       <div class="flex items-center gap-3">
         <a href="#" class="hidden sm:inline-block text-sm font-semibold text-slate-300 hover:text-white cursor-pointer">Sign in</a>
         <a href="ceh-training.html" class="bg-primary hover:bg-primaryDark text-white text-sm font-semibold px-5 py-2.5 rounded-lg transition-colors cursor-pointer">Get Certified</a>
+        <button id="navToggle" type="button" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu"
+          class="md:hidden w-11 h-11 -mr-2 inline-flex items-center justify-center rounded-lg text-slate-300 hover:text-white hover:bg-white/10 transition-colors cursor-pointer">
+          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
       </div>
     </div>
+    <nav id="mobileNav" hidden aria-label="Primary mobile" class="md:hidden border-t border-white/10 bg-ink px-6 pb-4">
+      <a href="index.html" class="flex items-center min-h-[44px] text-slate-300 font-medium border-b border-white/5 cursor-pointer">Home</a>
+      <a href="ceh-training.html" class="flex items-center min-h-[44px] text-slate-300 font-medium border-b border-white/5 cursor-pointer">CEH Training</a>
+      <a href="blog.html" aria-current="page" class="flex items-center min-h-[44px] text-white font-medium border-b border-white/5 cursor-pointer">Cyber Exchange</a>
+      <a href="index.html#enterprise" class="flex items-center min-h-[44px] text-slate-300 font-medium border-b border-white/5 cursor-pointer">Enterprise</a>
+      <a href="#" class="flex items-center min-h-[44px] text-slate-300 font-medium cursor-pointer">Sign in</a>
+    </nav>
   </header>
 
   <main id="main">
     <!-- Header + search -->
     <section class="bg-ink py-14">
       <div class="max-w-8xl mx-auto px-6">
-        <span class="text-xs font-bold tracking-wider text-primary uppercase">Cyber Exchange</span>
-        <h1 class="font-heading text-4xl font-bold text-white mt-2">Research, career guides, and field notes</h1>
+        <span class="text-xs font-bold tracking-wider text-slate-300 uppercase">Cyber Exchange</span>
+        <h1 class="font-heading text-4xl font-bold text-white mt-2 balance">Research, career guides, and field notes</h1>
         <p class="text-slate-400 mt-3 max-w-xl">Written by practitioners, organized by the domain you're actually working in.</p>
         <form class="mt-7 max-w-lg" role="search" onsubmit="return false;">
           <label for="blog-search" class="sr-only">Search articles</label>
@@ -82,104 +115,92 @@
       </div>
     </nav>
 
-    <!-- Featured article -->
+    <!-- Featured article: real photography, not a flat tile with an icon -->
     <section class="max-w-8xl mx-auto px-6 py-12">
-      <a href="#" class="group grid md:grid-cols-2 gap-0 rounded-2xl overflow-hidden border border-slate-200 hover:shadow-xl transition-shadow cursor-pointer">
-        <div class="bg-ink p-10 flex items-center justify-center min-h-[240px] relative overflow-hidden" style="background-image: radial-gradient(circle at 25% 25%, rgba(237,0,0,0.25), transparent 60%);">
-          <svg class="w-16 h-16 text-white/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 2 3 6v6c0 5 3.8 9 9 10 5.2-1 9-5 9-10V6l-9-4z"/><path d="m9 12 2 2 4-4"/></svg>
-        </div>
+      <a href="#" class="group grid md:grid-cols-2 rounded-2xl overflow-hidden border border-slate-200 hover:shadow-xl transition-shadow cursor-pointer" data-reveal>
+        <figure class="relative aspect-[16/10] md:aspect-auto md:min-h-[300px] bg-ink overflow-hidden">
+          <div class="absolute inset-0 bg-ink" aria-hidden="true"><div class="absolute inset-0" style="background-image: radial-gradient(circle at 28% 22%, rgba(237,0,0,0.55), transparent 62%);"></div><svg class="absolute inset-0 w-full h-full" viewBox="0 0 400 225" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><g stroke="#FFFFFF" stroke-opacity=".12" fill="none"><path d="M-20 162 L120 92 L240 132 L420 52"/><path d="M-20 192 L120 132 L240 168 L420 94"/></g><g fill="#ED0000"><circle cx="120" cy="92" r="4"/><circle cx="240" cy="132" r="4"/></g><g fill="#FFFFFF" fill-opacity=".5"><circle cx="120" cy="132" r="2.5"/><circle cx="240" cy="168" r="2.5"/></g></svg><span class="absolute -left-2 bottom-[-0.22em] text-[86px] md:text-[120px] font-heading font-extrabold leading-none tracking-tight text-white/[0.13] whitespace-nowrap select-none">Red team</span><div class="absolute inset-0" style="background-image: linear-gradient(to top, rgba(30,30,30,0.85), transparent 60%);"></div></div>
+        </figure>
         <div class="p-8 flex flex-col justify-center bg-white">
-          <span class="text-xs font-bold text-primary uppercase w-fit">Ethical Hacking · Featured</span>
-          <h2 class="font-heading text-2xl font-bold text-slate-900 mt-3 group-hover:text-primary transition-colors">
+          <span class="text-xs font-bold tracking-wider text-primaryDark uppercase w-fit">Featured</span>
+          <h2 class="font-heading text-2xl md:text-3xl font-bold text-slate-900 mt-3 balance group-hover:text-primary transition-colors">
             How AI is changing red-team reconnaissance, and what defenders should watch for
           </h2>
-          <p class="text-sm text-slate-500 mt-3">A field look at LLM-assisted OSINT gathering, and three detection patterns worth building this quarter.</p>
-          <p class="text-xs text-slate-400 mt-5">Feb 18, 2026 · 8 min read</p>
+          <p class="text-slate-500 mt-3 max-w-[55ch]">A field look at LLM-assisted OSINT gathering, and three detection patterns worth building this quarter.</p>
+          <p class="text-sm text-slate-500 mt-5">Ethical Hacking &middot; Feb 18, 2026 &middot; 8 min read</p>
         </div>
       </a>
     </section>
 
-    <!-- Article grid: consistent cards, real hrefs -->
+    <!-- Recent: three with images, then a compact list. Varying density beats six identical cards. -->
     <section class="max-w-8xl mx-auto px-6 pb-8">
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-
+      <h2 class="sr-only">Recent articles</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6" data-reveal-group>
         <a href="#" class="group rounded-xl border border-slate-200 overflow-hidden hover:shadow-lg transition-shadow cursor-pointer">
-          <div class="aspect-[16/9] bg-surface flex items-center justify-center relative overflow-hidden" style="background-image: radial-gradient(circle at 25% 25%, rgba(237,0,0,0.2), transparent 60%);">
-            <svg class="w-9 h-9 text-white/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M8 4v0M16 4v0"/></svg>
-          </div>
+          <figure class="relative aspect-[16/9] bg-ink overflow-hidden">
+            <div class="absolute inset-0 bg-ink" aria-hidden="true"><div class="absolute inset-0" style="background-image: radial-gradient(circle at 70% 20%, rgba(237,0,0,0.55), transparent 62%);"></div><svg class="absolute inset-0 w-full h-full" viewBox="0 0 400 225" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><g stroke="#FFFFFF" stroke-opacity=".12" fill="none"><path d="M-20 166 L120 96 L240 136 L420 56"/><path d="M-20 196 L120 136 L240 172 L420 98"/></g><g fill="#ED0000"><circle cx="120" cy="96" r="4"/><circle cx="240" cy="136" r="4"/></g><g fill="#FFFFFF" fill-opacity=".5"><circle cx="120" cy="136" r="2.5"/><circle cx="240" cy="172" r="2.5"/></g></svg><span class="absolute -left-2 bottom-[-0.22em] text-[58px] font-heading font-extrabold leading-none tracking-tight text-white/[0.13] whitespace-nowrap select-none">Network</span><div class="absolute inset-0" style="background-image: linear-gradient(to top, rgba(30,30,30,0.85), transparent 60%);"></div></div>
+          </figure>
           <div class="p-5">
-            <span class="text-xs font-bold text-primary uppercase">Network Security</span>
-            <h3 class="font-heading font-semibold text-slate-900 mt-2 group-hover:text-primary transition-colors">Zero Trust in practice: a rollout checklist for mid-size teams</h3>
-            <p class="text-xs text-slate-400 mt-3">Feb 14, 2026 · 6 min read</p>
+            <span class="text-sm font-semibold text-primaryDark">Network Security</span>
+            <h3 class="font-heading font-semibold text-slate-900 mt-1.5 balance group-hover:text-primary transition-colors">Zero Trust in practice: a rollout checklist for mid-size teams</h3>
+            <p class="text-xs text-slate-500 mt-3">Feb 14, 2026 &middot; 6 min read</p>
           </div>
         </a>
-
         <a href="#" class="group rounded-xl border border-slate-200 overflow-hidden hover:shadow-lg transition-shadow cursor-pointer">
-          <div class="aspect-[16/9] bg-surface flex items-center justify-center relative overflow-hidden" style="background-image: radial-gradient(circle at 25% 25%, rgba(237,0,0,0.2), transparent 60%);">
-            <svg class="w-9 h-9 text-white/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 2 3 6v6c0 5 3.8 9 9 10 5.2-1 9-5 9-10V6l-9-4z"/></svg>
-          </div>
+          <figure class="relative aspect-[16/9] bg-ink overflow-hidden">
+            <div class="absolute inset-0 bg-ink" aria-hidden="true"><div class="absolute inset-0" style="background-image: radial-gradient(circle at 40% 20%, rgba(237,0,0,0.55), transparent 62%);"></div><svg class="absolute inset-0 w-full h-full" viewBox="0 0 400 225" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><g stroke="#FFFFFF" stroke-opacity=".12" fill="none"><path d="M-20 154 L120 84 L240 124 L420 44"/><path d="M-20 184 L120 124 L240 160 L420 86"/></g><g fill="#ED0000"><circle cx="120" cy="84" r="4"/><circle cx="240" cy="124" r="4"/></g><g fill="#FFFFFF" fill-opacity=".5"><circle cx="120" cy="124" r="2.5"/><circle cx="240" cy="160" r="2.5"/></g></svg><span class="absolute -left-2 bottom-[-0.22em] text-[58px] font-heading font-extrabold leading-none tracking-tight text-white/[0.13] whitespace-nowrap select-none">Cloud</span><div class="absolute inset-0" style="background-image: linear-gradient(to top, rgba(30,30,30,0.85), transparent 60%);"></div></div>
+          </figure>
           <div class="p-5">
-            <span class="text-xs font-bold text-primary uppercase">Cloud Security</span>
-            <h3 class="font-heading font-semibold text-slate-900 mt-2 group-hover:text-primary transition-colors">Misconfigured S3 buckets are still the #1 breach vector</h3>
-            <p class="text-xs text-slate-400 mt-3">Feb 10, 2026 · 5 min read</p>
+            <span class="text-sm font-semibold text-primaryDark">Cloud Security</span>
+            <h3 class="font-heading font-semibold text-slate-900 mt-1.5 balance group-hover:text-primary transition-colors">Misconfigured S3 buckets are still the #1 breach vector</h3>
+            <p class="text-xs text-slate-500 mt-3">Feb 10, 2026 &middot; 5 min read</p>
           </div>
         </a>
-
         <a href="#" class="group rounded-xl border border-slate-200 overflow-hidden hover:shadow-lg transition-shadow cursor-pointer">
-          <div class="aspect-[16/9] bg-surface flex items-center justify-center relative overflow-hidden" style="background-image: radial-gradient(circle at 25% 25%, rgba(237,0,0,0.2), transparent 60%);">
-            <svg class="w-9 h-9 text-white/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
-          </div>
+          <figure class="relative aspect-[16/9] bg-ink overflow-hidden">
+            <div class="absolute inset-0 bg-ink" aria-hidden="true"><div class="absolute inset-0" style="background-image: radial-gradient(circle at 82% 20%, rgba(237,0,0,0.55), transparent 62%);"></div><svg class="absolute inset-0 w-full h-full" viewBox="0 0 400 225" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><g stroke="#FFFFFF" stroke-opacity=".12" fill="none"><path d="M-20 174 L120 104 L240 144 L420 64"/><path d="M-20 204 L120 144 L240 180 L420 106"/></g><g fill="#ED0000"><circle cx="120" cy="104" r="4"/><circle cx="240" cy="144" r="4"/></g><g fill="#FFFFFF" fill-opacity=".5"><circle cx="120" cy="144" r="2.5"/><circle cx="240" cy="180" r="2.5"/></g></svg><span class="absolute -left-2 bottom-[-0.22em] text-[58px] font-heading font-extrabold leading-none tracking-tight text-white/[0.13] whitespace-nowrap select-none">Forensics</span><div class="absolute inset-0" style="background-image: linear-gradient(to top, rgba(30,30,30,0.85), transparent 60%);"></div></div>
+          </figure>
           <div class="p-5">
-            <span class="text-xs font-bold text-primary uppercase">Digital Forensics</span>
-            <h3 class="font-heading font-semibold text-slate-900 mt-2 group-hover:text-primary transition-colors">Chain of custody for cloud-native evidence: what changed</h3>
-            <p class="text-xs text-slate-400 mt-3">Feb 6, 2026 · 7 min read</p>
+            <span class="text-sm font-semibold text-primaryDark">Digital Forensics</span>
+            <h3 class="font-heading font-semibold text-slate-900 mt-1.5 balance group-hover:text-primary transition-colors">Chain of custody for cloud-native evidence: what changed</h3>
+            <p class="text-xs text-slate-500 mt-3">Feb 6, 2026 &middot; 7 min read</p>
           </div>
         </a>
+      </div>
 
-        <a href="#" class="group rounded-xl border border-slate-200 overflow-hidden hover:shadow-lg transition-shadow cursor-pointer">
-          <div class="aspect-[16/9] bg-surface flex items-center justify-center relative overflow-hidden" style="background-image: radial-gradient(circle at 25% 25%, rgba(237,0,0,0.2), transparent 60%);">
-            <svg class="w-9 h-9 text-white/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M9 3v18M3 9h18"/></svg>
+      <div class="mt-10 divide-y divide-slate-200 border-y border-slate-200" data-reveal-group>
+        <a href="#" class="group flex items-baseline justify-between gap-6 py-5 cursor-pointer">
+          <div>
+            <span class="text-sm font-semibold text-primaryDark">DevSecOps</span>
+            <h3 class="font-heading font-semibold text-slate-900 mt-1 balance group-hover:text-primary transition-colors">Shifting left without slowing releases: a pipeline audit</h3>
           </div>
-          <div class="p-5">
-            <span class="text-xs font-bold text-primary uppercase">DevSecOps</span>
-            <h3 class="font-heading font-semibold text-slate-900 mt-2 group-hover:text-primary transition-colors">Shifting left without slowing releases: a pipeline audit</h3>
-            <p class="text-xs text-slate-400 mt-3">Jan 30, 2026 · 6 min read</p>
-          </div>
+          <p class="text-xs text-slate-500 whitespace-nowrap shrink-0">Jan 30, 2026 &middot; 6 min read</p>
         </a>
-
-        <a href="#" class="group rounded-xl border border-slate-200 overflow-hidden hover:shadow-lg transition-shadow cursor-pointer">
-          <div class="aspect-[16/9] bg-surface flex items-center justify-center relative overflow-hidden" style="background-image: radial-gradient(circle at 25% 25%, rgba(237,0,0,0.2), transparent 60%);">
-            <svg class="w-9 h-9 text-white/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/></svg>
+        <a href="#" class="group flex items-baseline justify-between gap-6 py-5 cursor-pointer">
+          <div>
+            <span class="text-sm font-semibold text-primaryDark">Executive Management</span>
+            <h3 class="font-heading font-semibold text-slate-900 mt-1 balance group-hover:text-primary transition-colors">The board wants a cyber-risk number. Here's how to give them one</h3>
           </div>
-          <div class="p-5">
-            <span class="text-xs font-bold text-primary uppercase">Executive Management</span>
-            <h3 class="font-heading font-semibold text-slate-900 mt-2 group-hover:text-primary transition-colors">The board wants a cyber-risk number. Here's how to give them one</h3>
-            <p class="text-xs text-slate-400 mt-3">Jan 26, 2026 · 9 min read</p>
-          </div>
+          <p class="text-xs text-slate-500 whitespace-nowrap shrink-0">Jan 26, 2026 &middot; 9 min read</p>
         </a>
-
-        <a href="#" class="group rounded-xl border border-slate-200 overflow-hidden hover:shadow-lg transition-shadow cursor-pointer">
-          <div class="aspect-[16/9] bg-surface flex items-center justify-center relative overflow-hidden" style="background-image: radial-gradient(circle at 25% 25%, rgba(237,0,0,0.2), transparent 60%);">
-            <svg class="w-9 h-9 text-white/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/></svg>
+        <a href="#" class="group flex items-baseline justify-between gap-6 py-5 cursor-pointer">
+          <div>
+            <span class="text-sm font-semibold text-primaryDark">Ethical Hacking</span>
+            <h3 class="font-heading font-semibold text-slate-900 mt-1 balance group-hover:text-primary transition-colors">CEH Practical debrief: what the 20 challenges actually test</h3>
           </div>
-          <div class="p-5">
-            <span class="text-xs font-bold text-primary uppercase">Ethical Hacking</span>
-            <h3 class="font-heading font-semibold text-slate-900 mt-2 group-hover:text-primary transition-colors">CEH Practical debrief: what the 20 challenges actually test</h3>
-            <p class="text-xs text-slate-400 mt-3">Jan 21, 2026 · 5 min read</p>
-          </div>
+          <p class="text-xs text-slate-500 whitespace-nowrap shrink-0">Jan 21, 2026 &middot; 5 min read</p>
         </a>
-
       </div>
     </section>
 
     <!-- Real numbered pagination: not a javascript:void(0) "Load more" -->
     <nav aria-label="Article pagination" class="max-w-8xl mx-auto px-6 pb-20">
       <ul class="flex items-center justify-center gap-2 text-sm font-semibold">
-        <li><a href="#" class="flex items-center gap-1 px-3 py-2 rounded-lg text-slate-400 cursor-not-allowed" aria-disabled="true">← Prev</a></li>
+        <li><a href="#" class="flex items-center gap-1 px-3 py-2 rounded-lg text-slate-500 cursor-not-allowed" aria-disabled="true">← Prev</a></li>
         <li><a href="#" aria-current="page" class="w-9 h-9 flex items-center justify-center rounded-lg bg-ink text-white cursor-pointer">1</a></li>
         <li><a href="#" class="w-9 h-9 flex items-center justify-center rounded-lg text-slate-600 hover:bg-slate-100 cursor-pointer">2</a></li>
         <li><a href="#" class="w-9 h-9 flex items-center justify-center rounded-lg text-slate-600 hover:bg-slate-100 cursor-pointer">3</a></li>
-        <li><span class="px-1 text-slate-400">…</span></li>
+        <li><span class="px-1 text-slate-500">…</span></li>
         <li><a href="#" class="w-9 h-9 flex items-center justify-center rounded-lg text-slate-600 hover:bg-slate-100 cursor-pointer">12</a></li>
         <li><a href="#" class="flex items-center gap-1 px-3 py-2 rounded-lg text-slate-600 hover:bg-slate-100 cursor-pointer">Next →</a></li>
       </ul>
@@ -188,7 +209,7 @@
     <!-- Newsletter -->
     <section class="bg-ink py-16">
       <div class="max-w-xl mx-auto px-6 text-center">
-        <h2 class="font-heading text-2xl font-bold text-white">One email a week. No fluff.</h2>
+        <h2 class="font-heading text-2xl font-bold text-white balance">One email a week. No fluff.</h2>
         <p class="text-slate-400 mt-2">The Cyber Exchange digest: new research, no vendor pitches.</p>
         <form class="mt-6 flex flex-col sm:flex-row gap-3" onsubmit="return false;">
           <label for="newsletter-email" class="sr-only">Email address</label>
@@ -205,8 +226,49 @@
         <span class="w-7 h-7 rounded-md bg-primary flex items-center justify-center text-white text-xs">SC</span>
         SecureCred
       </a>
-      <p class="text-xs text-slate-500">Concept redesign for portfolio/demo purposes. Not affiliated with EC-Council.</p>
+      <p class="text-xs text-slate-400">Concept redesign for portfolio/demo purposes. Not affiliated with EC-Council.</p>
     </div>
   </footer>
+  <script>
+    // Mobile nav disclosure
+    (function () {
+      var btn = document.getElementById('navToggle');
+      var panel = document.getElementById('mobileNav');
+      if (!btn || !panel) return;
+      function setOpen(open) {
+        panel.hidden = !open;
+        btn.setAttribute('aria-expanded', String(open));
+        btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      }
+      btn.addEventListener('click', function () { setOpen(panel.hidden); });
+      panel.addEventListener('click', function (e) { if (e.target.tagName === 'A') setOpen(false); });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !panel.hidden) { setOpen(false); btn.focus(); } });
+    })();
+
+    // Reveal on scroll, with three independent guarantees that content ends up visible:
+    // no-JS never hides it, unsupported IntersectionObserver reveals everything, and a
+    // timeout reveals anything the observer somehow missed.
+    (function () {
+      var targets = [].slice.call(document.querySelectorAll('[data-reveal]'))
+        .concat([].slice.call(document.querySelectorAll('[data-reveal-group] > *')));
+      function revealAll() { targets.forEach(function (el) { el.classList.add('is-in'); }); }
+      if (!('IntersectionObserver' in window)) { revealAll(); return; }
+
+      [].slice.call(document.querySelectorAll('[data-reveal-group]')).forEach(function (g) {
+        [].slice.call(g.children).forEach(function (child, i) {
+          child.style.transitionDelay = Math.min(i * 60, 300) + 'ms';
+        });
+      });
+
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) { entry.target.classList.add('is-in'); io.unobserve(entry.target); }
+        });
+      }, { rootMargin: '0px 0px -8% 0px', threshold: 0.01 });
+      targets.forEach(function (el) { io.observe(el); });
+
+      setTimeout(revealAll, 2500);
+    })();
+  </script>
 </body>
 </html>
