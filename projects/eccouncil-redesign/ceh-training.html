@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
+  <script>document.documentElement.className = "js";</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Certified Ethical Hacker (CEH) v13 | SecureCred</title>
   <meta name="description" content="Concept redesign of a CEH program page: sticky section nav, progressive-disclosure curriculum, and one comparison table instead of four disconnected pricing cards.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23ED0000'/%3E%3Ctext x='16' y='22' font-family='Poppins,Arial,sans-serif' font-size='15' font-weight='700' fill='white' text-anchor='middle'%3ESC%3C/text%3E%3C/svg%3E">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,16 +26,32 @@
     }
   </script>
   <style>
+    html { scroll-behavior: smooth; }
+    [id] { scroll-margin-top: 5.5rem; }
     @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
       *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
     }
+    /* Visible on both light and dark surfaces: white core + red halo */
+    :focus-visible { outline: 2px solid #FFFFFF; outline-offset: 2px; box-shadow: 0 0 0 5px rgba(237,0,0,0.9); border-radius: 3px; }
+    .balance { text-wrap: balance; }
     .grid-overlay {
-      background-image: linear-gradient(rgba(148,163,184,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(148,163,184,0.08) 1px, transparent 1px);
-      background-size: 40px 40px;
+      background-image: linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px);
+      background-size: 44px 44px;
     }
     details > summary { list-style: none; }
     details > summary::-webkit-details-marker { display: none; }
     details[open] .chev { transform: rotate(180deg); }
+    /* Reveal-on-scroll. The hidden state is applied ONLY when JS is running and the
+       user has not asked for reduced motion, so content can never be stranded invisible. */
+    @media (prefers-reduced-motion: no-preference) {
+      .js [data-reveal], .js [data-reveal-group] > * {
+        opacity: 0; transform: translateY(12px);
+        transition: opacity .4s ease-out, transform .4s ease-out;
+      }
+      .js [data-reveal].is-in, .js [data-reveal-group] > .is-in { opacity: 1; transform: none; }
+    }
+
   </style>
 </head>
 <body class="bg-paper font-body text-slate-800 antialiased">
@@ -55,8 +73,19 @@
       <div class="flex items-center gap-3">
         <a href="#" class="hidden sm:inline-block text-sm font-semibold text-slate-300 hover:text-white cursor-pointer">Sign in</a>
         <a href="#pricing" class="bg-primary hover:bg-primaryDark text-white text-sm font-semibold px-5 py-2.5 rounded-lg transition-colors cursor-pointer">Get Certified</a>
+        <button id="navToggle" type="button" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu"
+          class="md:hidden w-11 h-11 -mr-2 inline-flex items-center justify-center rounded-lg text-slate-300 hover:text-white hover:bg-white/10 transition-colors cursor-pointer">
+          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
       </div>
     </div>
+    <nav id="mobileNav" hidden aria-label="Primary mobile" class="md:hidden border-t border-white/10 bg-ink px-6 pb-4">
+      <a href="index.html" class="flex items-center min-h-[44px] text-slate-300 font-medium border-b border-white/5 cursor-pointer">Home</a>
+      <a href="ceh-training.html" aria-current="page" class="flex items-center min-h-[44px] text-white font-medium border-b border-white/5 cursor-pointer">CEH Training</a>
+      <a href="blog.html" class="flex items-center min-h-[44px] text-slate-300 font-medium border-b border-white/5 cursor-pointer">Cyber Exchange</a>
+      <a href="index.html#enterprise" class="flex items-center min-h-[44px] text-slate-300 font-medium border-b border-white/5 cursor-pointer">Enterprise</a>
+      <a href="#" class="flex items-center min-h-[44px] text-slate-300 font-medium cursor-pointer">Sign in</a>
+    </nav>
     <!-- Sticky section sub-nav: replaces scroll-and-hunt through 20 modules -->
     <div class="border-t border-white/5 bg-surface hidden md:block">
       <div class="max-w-8xl mx-auto px-6 flex items-center gap-7 h-11 text-xs font-semibold text-slate-400 overflow-x-auto">
@@ -78,7 +107,7 @@
           <span class="inline-flex items-center gap-2 text-xs font-semibold tracking-wide text-white bg-white/10 border border-white/20 rounded-full px-3 py-1 mb-6">
             World's #1 ethical hacking certification
           </span>
-          <h1 class="font-heading text-4xl md:text-5xl font-bold text-white leading-tight">
+          <h1 class="font-heading text-4xl md:text-5xl font-bold text-white leading-tight balance">
             Certified Ethical Hacker <span class="text-primary">v13</span>
           </h1>
           <p class="mt-5 text-lg text-slate-300 max-w-lg">
@@ -114,48 +143,65 @@
       </div>
     </section>
 
-    <!-- Learning framework -->
-    <section class="bg-white border-b border-slate-100 py-16">
-      <div class="max-w-8xl mx-auto px-6">
-        <h2 class="font-heading text-2xl font-bold text-slate-900 text-center mb-10">How the program is structured</h2>
-        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div class="text-center">
-            <div class="w-12 h-12 rounded-full bg-primary/10 text-primary font-heading font-bold flex items-center justify-center mx-auto mb-4">1</div>
-            <h3 class="font-heading font-semibold text-slate-900">Learn</h3>
-            <p class="text-sm text-slate-500 mt-1.5">20 modules, self-paced or live-online.</p>
-          </div>
-          <div class="text-center">
-            <div class="w-12 h-12 rounded-full bg-primary/10 text-primary font-heading font-bold flex items-center justify-center mx-auto mb-4">2</div>
-            <h3 class="font-heading font-semibold text-slate-900">Certify</h3>
-            <p class="text-sm text-slate-500 mt-1.5">Knowledge exam, plus optional hands-on Practical.</p>
-          </div>
-          <div class="text-center">
-            <div class="w-12 h-12 rounded-full bg-primary/10 text-primary font-heading font-bold flex items-center justify-center mx-auto mb-4">3</div>
-            <h3 class="font-heading font-semibold text-slate-900">Engage</h3>
-            <p class="text-sm text-slate-500 mt-1.5">Community, CPE credits, and continuing labs.</p>
-          </div>
-          <div class="text-center">
-            <div class="w-12 h-12 rounded-full bg-primary/10 text-primary font-heading font-bold flex items-center justify-center mx-auto mb-4">4</div>
-            <h3 class="font-heading font-semibold text-slate-900">Compete</h3>
-            <p class="text-sm text-slate-500 mt-1.5">Global Hacking Competition and Hall of Fame.</p>
-          </div>
+    <!-- Structure: a vertical timeline beside real photography, not four numbered circles in a row -->
+    <section class="bg-white border-b border-slate-100 py-20">
+      <div class="max-w-8xl mx-auto px-6 grid lg:grid-cols-[1fr_0.85fr] gap-12 lg:gap-20 items-center">
+        <div>
+          <h2 class="font-heading text-3xl md:text-4xl font-bold text-slate-900 balance max-w-[16ch]">How the program is structured</h2>
+          <ol class="mt-10 relative" data-reveal-group>
+            <li class="relative flex gap-5 pb-8">
+              <span aria-hidden="true" class="absolute left-[19px] top-11 bottom-1 w-px bg-slate-200"></span>
+              <span class="relative z-10 shrink-0 w-10 h-10 rounded-full bg-primary/10 text-primary font-heading font-bold flex items-center justify-center">1</span>
+              <div class="pt-1.5">
+                <h3 class="font-heading font-semibold text-slate-900">Learn</h3>
+                <p class="text-sm text-slate-500 mt-1 max-w-[46ch]">20 modules, self-paced or live-online with an instructor.</p>
+              </div>
+            </li>
+            <li class="relative flex gap-5 pb-8">
+              <span aria-hidden="true" class="absolute left-[19px] top-11 bottom-1 w-px bg-slate-200"></span>
+              <span class="relative z-10 shrink-0 w-10 h-10 rounded-full bg-primary/10 text-primary font-heading font-bold flex items-center justify-center">2</span>
+              <div class="pt-1.5">
+                <h3 class="font-heading font-semibold text-slate-900">Certify</h3>
+                <p class="text-sm text-slate-500 mt-1 max-w-[46ch]">Knowledge exam, plus the optional hands-on Practical.</p>
+              </div>
+            </li>
+            <li class="relative flex gap-5 pb-8">
+              <span aria-hidden="true" class="absolute left-[19px] top-11 bottom-1 w-px bg-slate-200"></span>
+              <span class="relative z-10 shrink-0 w-10 h-10 rounded-full bg-primary/10 text-primary font-heading font-bold flex items-center justify-center">3</span>
+              <div class="pt-1.5">
+                <h3 class="font-heading font-semibold text-slate-900">Engage</h3>
+                <p class="text-sm text-slate-500 mt-1 max-w-[46ch]">Community access, CPE credits, and continuing labs.</p>
+              </div>
+            </li>
+            <li class="relative flex gap-5 pb-0">
+              <span class="relative z-10 shrink-0 w-10 h-10 rounded-full bg-primary/10 text-primary font-heading font-bold flex items-center justify-center">4</span>
+              <div class="pt-1.5">
+                <h3 class="font-heading font-semibold text-slate-900">Compete</h3>
+                <p class="text-sm text-slate-500 mt-1 max-w-[46ch]">Global Hacking Competition and the CEH Hall of Fame.</p>
+              </div>
+            </li>
+          </ol>
         </div>
+        <figure class="relative aspect-[4/3] rounded-2xl overflow-hidden bg-ink" data-reveal>
+          <svg class="absolute inset-0 w-full h-full" viewBox="0 0 600 750" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><defs><radialGradient id="g21" cx="50%" cy="24%" r="70%"><stop offset="0" stop-color="#ED0000" stop-opacity=".55"/><stop offset=".55" stop-color="#ED0000" stop-opacity=".12"/><stop offset="1" stop-color="#ED0000" stop-opacity="0"/></radialGradient><linearGradient id="f21" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1E1E1E" stop-opacity="0"/><stop offset="1" stop-color="#1E1E1E" stop-opacity=".92"/></linearGradient></defs><rect width="600" height="750" fill="#1E1E1E"/><rect width="600" height="750" fill="url(#g21)"/><g fill="none" stroke="#FFFFFF" stroke-opacity=".10"><circle cx="300" cy="180" r="60"/><circle cx="300" cy="180" r="118"/><circle cx="300" cy="180" r="176"/><circle cx="300" cy="180" r="234"/></g><g stroke="#FFFFFF" stroke-opacity=".16" stroke-width="1"><line x1="123" y1="499" x2="150" y2="562"/><line x1="123" y1="499" x2="118" y2="578"/><line x1="371" y1="370" x2="463" y2="390"/><line x1="371" y1="370" x2="275" y2="414"/><line x1="150" y1="562" x2="118" y2="578"/><line x1="150" y1="562" x2="102" y2="646"/><line x1="463" y1="390" x2="498" y2="454"/><line x1="463" y1="390" x2="539" y2="302"/><line x1="303" y1="220" x2="345" y2="118"/><line x1="303" y1="220" x2="299" y2="146"/><line x1="38" y1="303" x2="54" y2="277"/><line x1="345" y1="118" x2="299" y2="146"/><line x1="345" y1="118" x2="448" y2="203"/><line x1="455" y1="218" x2="539" y2="302"/><line x1="455" y1="218" x2="493" y2="219"/><line x1="455" y1="218" x2="448" y2="203"/><line x1="159" y1="101" x2="135" y2="98"/><line x1="563" y1="529" x2="498" y2="454"/><line x1="563" y1="529" x2="548" y2="625"/><line x1="539" y1="302" x2="493" y2="219"/><line x1="539" y1="302" x2="448" y2="203"/><line x1="118" y1="578" x2="102" y2="646"/><line x1="275" y1="414" x2="217" y2="373"/><line x1="493" y1="219" x2="448" y2="203"/></g><g><circle cx="123" cy="499" r="4" fill="#ED0000"/><circle cx="123" cy="499" r="9" fill="none" stroke="#ED0000" stroke-opacity=".45"/><circle cx="371" cy="370" r="2.5" fill="#FFFFFF" fill-opacity=".55"/><circle cx="150" cy="562" r="2.5" fill="#FFFFFF" fill-opacity=".55"/><circle cx="463" cy="390" r="2.5" fill="#FFFFFF" fill-opacity=".55"/><circle cx="303" cy="220" r="4" fill="#ED0000"/><circle cx="303" cy="220" r="9" fill="none" stroke="#ED0000" stroke-opacity=".45"/><circle cx="38" cy="303" r="2.5" fill="#FFFFFF" fill-opacity=".55"/><circle cx="345" cy="118" r="2.5" fill="#FFFFFF" fill-opacity=".55"/><circle cx="455" cy="218" r="2.5" fill="#FFFFFF" fill-opacity=".55"/><circle cx="159" cy="101" r="4" fill="#ED0000"/><circle cx="159" cy="101" r="9" fill="none" stroke="#ED0000" stroke-opacity=".45"/><circle cx="563" cy="529" r="2.5" fill="#FFFFFF" fill-opacity=".55"/><circle cx="498" cy="454" r="2.5" fill="#FFFFFF" fill-opacity=".55"/><circle cx="54" cy="277" r="2.5" fill="#FFFFFF" fill-opacity=".55"/><circle cx="299" cy="146" r="4" fill="#ED0000"/><circle cx="299" cy="146" r="9" fill="none" stroke="#ED0000" stroke-opacity=".45"/><circle cx="539" cy="302" r="2.5" fill="#FFFFFF" fill-opacity=".55"/><circle cx="118" cy="578" r="2.5" fill="#FFFFFF" fill-opacity=".55"/><circle cx="102" cy="646" r="2.5" fill="#FFFFFF" fill-opacity=".55"/><circle cx="275" cy="414" r="4" fill="#ED0000"/><circle cx="275" cy="414" r="9" fill="none" stroke="#ED0000" stroke-opacity=".45"/><circle cx="217" cy="373" r="2.5" fill="#FFFFFF" fill-opacity=".55"/><circle cx="135" cy="98" r="2.5" fill="#FFFFFF" fill-opacity=".55"/><circle cx="493" cy="219" r="2.5" fill="#FFFFFF" fill-opacity=".55"/><circle cx="448" cy="203" r="4" fill="#ED0000"/><circle cx="448" cy="203" r="9" fill="none" stroke="#ED0000" stroke-opacity=".45"/><circle cx="548" cy="625" r="2.5" fill="#FFFFFF" fill-opacity=".55"/></g><rect width="600" height="750" fill="url(#f21)"/></svg>
+          <div class="absolute inset-0" style="background-image: radial-gradient(circle at 30% 15%, rgba(237,0,0,0.4), transparent 60%), linear-gradient(to top, rgba(30,30,30,0.9), rgba(30,30,30,0.1));"></div>
+        </figure>
       </div>
     </section>
 
     <!-- Curriculum: accordion instead of a 20-item wall of text -->
     <section id="curriculum" class="bg-paper py-20">
       <div class="max-w-4xl mx-auto px-6">
-        <div class="text-center mb-10">
-          <span class="text-xs font-bold tracking-wider text-primary uppercase">Curriculum</span>
-          <h2 class="font-heading text-3xl font-bold text-slate-900 mt-2">20 modules, grouped so you can skim</h2>
+        <div class="text-center mb-10" data-reveal>
+          <span class="text-xs font-bold tracking-wider text-primaryDark uppercase">Curriculum</span>
+          <h2 class="font-heading text-3xl font-bold text-slate-900 mt-2 balance">20 modules, grouped so you can skim</h2>
           <p class="text-slate-500 mt-2">Expand any phase. Nobody reads 20 rows in one pass.</p>
         </div>
 
         <details class="bg-white rounded-xl border border-slate-200 mb-3 open:shadow-sm" open>
           <summary class="flex items-center justify-between px-6 py-4 cursor-pointer">
-            <span class="font-heading font-semibold text-slate-900">Foundations <span class="text-slate-400 font-normal text-sm">· Modules 1–5</span></span>
-            <svg class="chev w-5 h-5 text-slate-400 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+            <span class="font-heading font-semibold text-slate-900">Foundations <span class="text-slate-500 font-normal text-sm">· Modules 1–5</span></span>
+            <svg class="chev w-5 h-5 text-slate-500 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
           </summary>
           <ul class="px-6 pb-5 text-sm text-slate-600 space-y-2 border-t border-slate-100 pt-4">
             <li>1. Introduction to Ethical Hacking</li>
@@ -168,8 +214,8 @@
 
         <details class="bg-white rounded-xl border border-slate-200 mb-3 open:shadow-sm">
           <summary class="flex items-center justify-between px-6 py-4 cursor-pointer">
-            <span class="font-heading font-semibold text-slate-900">System &amp; Network Attacks <span class="text-slate-400 font-normal text-sm">· Modules 6–11</span></span>
-            <svg class="chev w-5 h-5 text-slate-400 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+            <span class="font-heading font-semibold text-slate-900">System &amp; Network Attacks <span class="text-slate-500 font-normal text-sm">· Modules 6–11</span></span>
+            <svg class="chev w-5 h-5 text-slate-500 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
           </summary>
           <ul class="px-6 pb-5 text-sm text-slate-600 space-y-2 border-t border-slate-100 pt-4">
             <li>6. System Hacking</li>
@@ -183,8 +229,8 @@
 
         <details class="bg-white rounded-xl border border-slate-200 mb-3 open:shadow-sm">
           <summary class="flex items-center justify-between px-6 py-4 cursor-pointer">
-            <span class="font-heading font-semibold text-slate-900">Infrastructure &amp; Web <span class="text-slate-400 font-normal text-sm">· Modules 12–16</span></span>
-            <svg class="chev w-5 h-5 text-slate-400 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+            <span class="font-heading font-semibold text-slate-900">Infrastructure &amp; Web <span class="text-slate-500 font-normal text-sm">· Modules 12–16</span></span>
+            <svg class="chev w-5 h-5 text-slate-500 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
           </summary>
           <ul class="px-6 pb-5 text-sm text-slate-600 space-y-2 border-t border-slate-100 pt-4">
             <li>12. Evading IDS, Firewalls &amp; Honeypots</li>
@@ -197,8 +243,8 @@
 
         <details class="bg-white rounded-xl border border-slate-200 mb-3 open:shadow-sm">
           <summary class="flex items-center justify-between px-6 py-4 cursor-pointer">
-            <span class="font-heading font-semibold text-slate-900">Emerging Surfaces <span class="text-slate-400 font-normal text-sm">· Modules 17–20</span></span>
-            <svg class="chev w-5 h-5 text-slate-400 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+            <span class="font-heading font-semibold text-slate-900">Emerging Surfaces <span class="text-slate-500 font-normal text-sm">· Modules 17–20</span></span>
+            <svg class="chev w-5 h-5 text-slate-500 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
           </summary>
           <ul class="px-6 pb-5 text-sm text-slate-600 space-y-2 border-t border-slate-100 pt-4">
             <li>17. Hacking Mobile Platforms</li>
@@ -214,12 +260,11 @@
     <section id="exam" class="bg-white border-y border-slate-100 py-20">
       <div class="max-w-8xl mx-auto px-6">
         <div class="text-center mb-10">
-          <span class="text-xs font-bold tracking-wider text-primary uppercase">Exam</span>
-          <h2 class="font-heading text-3xl font-bold text-slate-900 mt-2">Two exams. One required, one optional.</h2>
+          <h2 class="font-heading text-3xl font-bold text-slate-900 mt-2 balance">Two exams. One required, one optional.</h2>
         </div>
-        <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto" data-reveal-group>
           <div class="rounded-2xl border border-slate-200 p-7">
-            <span class="text-xs font-bold text-primary bg-primary/10 rounded px-2 py-1">REQUIRED</span>
+            <span class="text-xs font-bold text-primaryDark bg-primary/10 rounded px-2 py-1">REQUIRED</span>
             <h3 class="font-heading font-semibold text-xl text-slate-900 mt-4">Knowledge Exam</h3>
             <ul class="mt-4 space-y-2.5 text-sm text-slate-600">
               <li class="flex gap-2"><svg class="w-4 h-4 text-primary shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>125 multiple-choice questions</li>
@@ -244,8 +289,7 @@
     <section id="pricing" class="bg-paper py-20">
       <div class="max-w-8xl mx-auto px-6">
         <div class="text-center mb-10">
-          <span class="text-xs font-bold tracking-wider text-primary uppercase">Pricing</span>
-          <h2 class="font-heading text-3xl font-bold text-slate-900 mt-2">Pick a format, not just a price</h2>
+          <h2 class="font-heading text-3xl font-bold text-slate-900 mt-2 balance">Pick a format, not just a price</h2>
           <p class="text-slate-500 mt-2">Each tier answers a different question: how much guidance and time do you have?</p>
         </div>
 
@@ -334,7 +378,7 @@
     <!-- FAQ -->
     <section id="faq" class="bg-paper py-20">
       <div class="max-w-3xl mx-auto px-6">
-        <h2 class="font-heading text-3xl font-bold text-slate-900 text-center mb-10">Frequently asked</h2>
+        <h2 class="font-heading text-3xl font-bold text-slate-900 text-center mb-10 balance">Frequently asked</h2>
         <div class="space-y-3">
           <details class="bg-white rounded-xl border border-slate-200 px-6">
             <summary class="flex items-center justify-between py-5 cursor-pointer font-semibold text-slate-900">
@@ -364,7 +408,7 @@
     <!-- Final CTA -->
     <section class="bg-ink py-16">
       <div class="max-w-3xl mx-auto px-6 text-center">
-        <h2 class="font-heading text-3xl font-bold text-white">Ready to start CEH v13?</h2>
+        <h2 class="font-heading text-3xl font-bold text-white balance">Ready to start CEH v13?</h2>
         <p class="text-slate-400 mt-3">One decision: pick your format, and you're enrolled today.</p>
         <a href="#pricing" class="inline-block mt-7 bg-primary hover:bg-primaryDark text-white font-semibold px-8 py-3.5 rounded-lg transition-colors cursor-pointer">Compare training options</a>
       </div>
@@ -377,8 +421,49 @@
         <span class="w-7 h-7 rounded-md bg-primary flex items-center justify-center text-white text-xs">SC</span>
         SecureCred
       </a>
-      <p class="text-xs text-slate-500">Concept redesign for portfolio/demo purposes. Not affiliated with EC-Council.</p>
+      <p class="text-xs text-slate-400">Concept redesign for portfolio/demo purposes. Not affiliated with EC-Council.</p>
     </div>
   </footer>
+  <script>
+    // Mobile nav disclosure
+    (function () {
+      var btn = document.getElementById('navToggle');
+      var panel = document.getElementById('mobileNav');
+      if (!btn || !panel) return;
+      function setOpen(open) {
+        panel.hidden = !open;
+        btn.setAttribute('aria-expanded', String(open));
+        btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      }
+      btn.addEventListener('click', function () { setOpen(panel.hidden); });
+      panel.addEventListener('click', function (e) { if (e.target.tagName === 'A') setOpen(false); });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !panel.hidden) { setOpen(false); btn.focus(); } });
+    })();
+
+    // Reveal on scroll, with three independent guarantees that content ends up visible:
+    // no-JS never hides it, unsupported IntersectionObserver reveals everything, and a
+    // timeout reveals anything the observer somehow missed.
+    (function () {
+      var targets = [].slice.call(document.querySelectorAll('[data-reveal]'))
+        .concat([].slice.call(document.querySelectorAll('[data-reveal-group] > *')));
+      function revealAll() { targets.forEach(function (el) { el.classList.add('is-in'); }); }
+      if (!('IntersectionObserver' in window)) { revealAll(); return; }
+
+      [].slice.call(document.querySelectorAll('[data-reveal-group]')).forEach(function (g) {
+        [].slice.call(g.children).forEach(function (child, i) {
+          child.style.transitionDelay = Math.min(i * 60, 300) + 'ms';
+        });
+      });
+
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) { entry.target.classList.add('is-in'); io.unobserve(entry.target); }
+        });
+      }, { rootMargin: '0px 0px -8% 0px', threshold: 0.01 });
+      targets.forEach(function (el) { io.observe(el); });
+
+      setTimeout(revealAll, 2500);
+    })();
+  </script>
 </body>
 </html>
